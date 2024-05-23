@@ -43,7 +43,7 @@ const ParentSignup = () => {
   }
 
   return (
-    <div>
+    <>
       <form>
         <label htmlFor="firstName">First Name</label>
         <input type="text" id="firstname" placeholder="First Name" onChange={e => setParentUser({...parentUser, first_name: e.target.value })}/>
@@ -56,7 +56,7 @@ const ParentSignup = () => {
         <button type="submit" onClick={e => handleSignUp(e)}>Sign up!</button>
       </form>
       {showMessage && <div>{error}</div>}
-    </div>
+    </>
   )
 }
 export default ParentSignup
