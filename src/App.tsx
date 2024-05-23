@@ -1,6 +1,9 @@
+import ParentSignup from "./components/Parent_SignUp/signup"
 const App = () => {
   return (
-    <div>TESTING</div>
+    <div>
+      <ParentSignup />
+    </div>
   )
 }
 export default App
