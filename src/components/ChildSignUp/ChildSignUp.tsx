@@ -1,27 +1,27 @@
 import { useState } from "react"
 
-const ParentSignup = () => {
-  const [parentUser, setParentUser] = useState({
+const ChildSignUp = () => {
+  const [childUser, setChildUser] = useState({
       first_name: "",
       email: "",
       password: "",
-      role: "Parent"
+      role: "Child"
   })
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState("")
   const [showMessage, setShowMessage] = useState(false)
-  console.log('parentUser :>> ', parentUser);
+  console.log('childUser :>> ', childUser);
   console.log('confirmPassword :>> ', confirmPassword);
 
 
   const handleSignUp = async (e: React.FormEvent) => {
       e.preventDefault()
-      if (parentUser.password === confirmPassword) {
+      if (childUser.password === confirmPassword) {
         try {
-          const response = await fetch("http://127.0.0.1:5000/parent_signup", {
+          const response = await fetch("http://127.0.0.1:5000/child_signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(parentUser)
+            body: JSON.stringify(childUser)
           })
           // const data = await response.json()
           if (!response.ok) {
@@ -46,11 +46,9 @@ const ParentSignup = () => {
     <>
       <form>
         <label htmlFor="firstName">First Name</label>
-        <input type="text" id="firstname" placeholder="First Name" onChange={e => setParentUser({...parentUser, first_name: e.target.value })}/>
-        <label htmlFor="email">Email</label>
-        <input type="text" id="email" placeholder="Email" onChange={e => setParentUser({...parentUser, email: e.target.value})}/>
+        <input type="text" id="firstname" placeholder="First Name" onChange={e => setChildUser({...childUser, first_name: e.target.value })}/>
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" placeholder="password" onChange={e => setParentUser({...parentUser, password: e.target.value})}/>
+        <input type="password" id="password" placeholder="password" onChange={e => setChildUser({...childUser, password: e.target.value})}/>
         <label htmlFor="confirmPassword">Password</label>
         <input type="password" id="confirmPassword" placeholder="ConfirmPassword" onChange={e => setConfirmPassword(() => e.target.value)}/>
         <button type="submit" onClick={e => handleSignUp(e)}>Sign up!</button>
@@ -59,4 +57,4 @@ const ParentSignup = () => {
     </>
   )
 }
-export default ParentSignup
+export default ChildSignUp
