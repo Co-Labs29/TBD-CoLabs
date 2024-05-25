@@ -2,8 +2,7 @@ import { useState } from "react"
 
 const ChildSignUp = () => {
   const [childUser, setChildUser] = useState({
-      first_name: "",
-      email: "",
+      username: "",
       password: "",
       role: "Child"
   })
@@ -45,8 +44,8 @@ const ChildSignUp = () => {
   return (
     <>
       <form>
-        <label htmlFor="firstName">First Name</label>
-        <input type="text" id="firstname" placeholder="First Name" onChange={e => setChildUser({...childUser, first_name: e.target.value })}/>
+        <label htmlFor="username">Username</label>
+        <input type="text" id="username" placeholder="Username" onChange={e => setChildUser({...childUser, username: e.target.value })}/>
         <label htmlFor="password">Password</label>
         <input type="password" id="password" placeholder="password" onChange={e => setChildUser({...childUser, password: e.target.value})}/>
         <label htmlFor="confirmPassword">Password</label>

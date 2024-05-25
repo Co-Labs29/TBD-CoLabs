@@ -4,6 +4,7 @@ const ParentLogin = () => {
 
 const [loginParent, setLoginParent] = useState({email: "", password: "", role: "Parent"})
 const [error, setError] = useState("")
+const [message, setMessage] = useState("")
 const [showErrorMessage, setShowErrorMessage] = useState(false)
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -17,6 +18,8 @@ const [showErrorMessage, setShowErrorMessage] = useState(false)
 
       if (!response.ok) {
         setError("Invalid username or password")
+      } else {
+        setMessage("Login successful")
       }
     } catch (error) {
       console.error(error);
@@ -29,12 +32,13 @@ const [showErrorMessage, setShowErrorMessage] = useState(false)
     <>
       <form>
         <label htmlFor="email">Email</label>
-        <input type="text" id="email" placeholder="Email" onChange={e => setLoginParent({...loginParent, email: e.target.value})}/>
+        <input type="text" id="email" placeholder="Email" onChange={e => setLoginParent(prev => ({...prev, email: e.target.value}))}/>
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" placeholder="Password" onChange={e => setLoginParent({...loginParent, password: e.target.value})}/>
+        <input type="password" id="password" placeholder="Password" onChange={e => setLoginParent(prev => ({...prev, password: e.target.value}))}/>
         <button type="submit" onClick={e => handleLogin(e)}>Login!</button>
       </form>
       {showErrorMessage && <div>{error}</div>}
+      {message && <div>{message}</div>}
     </>
   )
 }
