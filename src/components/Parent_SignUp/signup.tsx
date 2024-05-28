@@ -84,7 +84,7 @@ const ParentSignup = () => {
         <button 
           type="submit" 
           onClick={handleSignUp} 
-          className="text-indigo-700 border-2 border-indigo-700 rounded-xl px-10 py-2 mx-20 ml-40"
+          className="text-purple-700 border-2 border-purple-700 rounded-xl px-10 py-2 mx-20 ml-40"
         >
           Sign up
         </button>

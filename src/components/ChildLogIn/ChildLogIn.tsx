@@ -28,13 +28,13 @@ const ChildLogin = () => {
 
   return (
     <>
-      <div className="bg-white p-8  w-full max-w-md">
+      <div className="p-8  w-full max-w-md">
         <form>
-          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email</label>
+          <label htmlFor="email" className="block text-gray-700 font-bold mb-2">User Name</label>
           <input
             type="text"
             id="email"
-            placeholder="Email"
+            placeholder="User Name"
             className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
             onChange={(e) => setLoginChild({...loginChild, email: e.target.value})}
           />
@@ -51,7 +51,7 @@ const ChildLogin = () => {
             onClick={handleLogin}
             className="text-purple-800 border-2 border-purple-700 rounded-xl px-10 py-2 ml-24"
           >
-            Login!
+            Login
           </button>
         </form>
         {showErrorMessage && <div>{error}</div>}

@@ -53,7 +53,7 @@ const ParentLogin = () => {
           onClick={handleLogin}
           className="text-indigo-800 border-2 border-purple-800 rounded-xl px-10 py-2 ml-24"
         >
-          Login!
+          Login
         </button>
       </form>
       {showErrorMessage && <div className="text-red-600">{error}</div>}
