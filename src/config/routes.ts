@@ -1,5 +1,5 @@
 import ParentSignup from "../components/Parent_SignUp/signup";
-import ParentLogin from "../components/ParentLogin/login";
+import Login from "../components/Login";
 
 interface RouteType {
     path: string,
@@ -14,9 +14,9 @@ const routes: RouteType[] = [
         name: "Parent Signup"
     },
     {
-        path:"/parentLogin",
-        component: ParentLogin,
-        name: "Parent Login"
+        path:"/Login",
+        component: Login,
+        name: "Login"
     }
 ];
 
