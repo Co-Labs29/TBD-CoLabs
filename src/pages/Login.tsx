@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ParentLogin from "../components/ParentLogin/login";
-import ChildLogIn from "./ChildLogIn/ChildLogIn";
+import ChildLogIn from "../components/ChildLogIn/ChildLogIn";
+import Navbar from "../components/Navbar";
 
 const Login = () => {
   const [selectedOption, setSelectedOption] = useState("parent");
 
   return (
+    <>
     <div className="flex items-center justify-center min-h-screen" id="signup">
       <div className="bg-white p-8 rounded-lg shadow-md border-2 border-gray-300 w-full max-w-md">
         <h1 className="text-center font-bold text-xl mb-7">Login</h1>
@@ -38,6 +40,7 @@ const Login = () => {
         )}
       </div>
     </div>
+    </>
   );
 };
 
