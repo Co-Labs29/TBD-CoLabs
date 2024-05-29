@@ -43,20 +43,57 @@ const ParentSignup = () => {
   }
 
   return (
-    <>
-      <form>
-        <label htmlFor="firstName">First Name</label>
-        <input type="text" id="firstname" placeholder="First Name" onChange={e => setParentUser({...parentUser, first_name: e.target.value })}/>
-        <label htmlFor="email">Email</label>
-        <input type="text" id="email" placeholder="Email" onChange={e => setParentUser({...parentUser, email: e.target.value})}/>
-        <label htmlFor="password">Password</label>
-        <input type="password" id="password" placeholder="password" onChange={e => setParentUser({...parentUser, password: e.target.value})}/>
-        <label htmlFor="confirmPassword">Password</label>
-        <input type="password" id="confirmPassword" placeholder="ConfirmPassword" onChange={e => setConfirmPassword(() => e.target.value)}/>
-        <button type="submit" onClick={e => handleSignUp(e)}>Sign up!</button>
+    <div className="flex items-center justify-center min-h-screen" id="signup">
+      <form className="bg-white p-8 rounded-lg shadow-md border-2 border-gray-400 w-full max-w-lg">
+        <h1 className="text-center font-bold text-xl mb-7">Sign up</h1>
+        <label htmlFor="firstName"className="block text-gray-700 font-bold mb-2" >First Name</label>
+        <input
+          type="text"
+          id="firstname" 
+          placeholder="First Name"
+          className="w-full px-3 py-2 mb-4 border rounded-lg"  
+          onChange={e => setParentUser({...parentUser, first_name: e.target.value })}
+        />
+        <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email</label>
+        <input 
+          type="text" 
+          id="email" 
+          placeholder="Email" 
+          className="w-full px-3 py-2 mb-4 border rounded-lg" 
+          onChange={(e) => setParentUser({ ...parentUser, email: e.target.value })}
+        />
+
+        <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          placeholder="Password" 
+          className="w-full px-3 py-2 mb-4 border rounded-lg" 
+          onChange={(e) => setParentUser({ ...parentUser, password: e.target.value })}
+        />
+
+        <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">Confirm Password</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          placeholder="Confirm Password" 
+          className="w-full px-3 py-2 mb-4 border rounded-lg" 
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+
+<button
+          type="submit"
+          onClick={handleSignUp}
+          className="text-purple-800 border-2 border-purple-700 rounded-xl px-10 py-2 mt-4 md:mt-0 md:ml-24"
+          style={{ marginLeft: "auto", marginRight: "auto", display: "block" }}
+        >
+          Login
+        </button>
       </form>
-      {showMessage && <div>{error}</div>}
-    </>
-  )
-}
+
+      {showMessage && <div className="mt-4 text-red-600">{error}</div>}
+    </div>
+  );
+};
+
 export default ParentSignup
