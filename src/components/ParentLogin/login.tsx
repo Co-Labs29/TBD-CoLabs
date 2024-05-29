@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../Navbar";
 
 const ParentLogin = () => {
   const [loginParent, setLoginParent] = useState({
@@ -37,6 +38,7 @@ const ParentLogin = () => {
   };
 
   return (
+    <>
     <div className="bg-white p-8 max-w-md">
       <form onSubmit={handleLogin}>
         <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
@@ -77,6 +79,7 @@ const ParentLogin = () => {
       </form>
       {showErrorMessage && <div className="text-red-600">{error}</div>}
     </div>
+    </>
   );
 };
 

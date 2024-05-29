@@ -12,11 +12,7 @@ const LandingPage = () => {
           </p>
           <p className="text-md items-center text-neutral-black-ish leading-[27px] pt-[20px] pb-[50px] text-center w-full md:w-auto">
             Get your little saver to create goals, save with virtual money, and
-            complete chores to earn money. Lorem ipsum dolor sit amet
-            consectetur, adipisicing elit. Quas quia officia debitis minima
-            deserunt cupiditate magnam sint eos sequi doloribus temporibus,
-            laborum ipsum exercitationem. Quidem, pariatur! Sequi distinctio
-            pariatur aperiam!
+            complete chores to earn money.
           </p>
         </div>
         <div className=" flex justify-center w-[450px]">
@@ -27,7 +23,7 @@ const LandingPage = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col md:flex-row justify-center md:pt-[120px] md:px-[55px] px-[30px] gap-[50px] w-full h-[49vh]" id='signup'>
+      <div className="flex flex-col md:flex-row justify-center md:pt-[120px] md:px-[55px] px-[30px] gap-[50px] w-full" id='signup'>
   <div className="pt-[60px] w-full md:w-[570px] flex flex-col flex-grow">
     <div className="flex flex-col">
       <p className="text-[36px] font-bold text-neutral-black-ish">Our features</p>
