@@ -1,7 +1,7 @@
 import ParentSignup from "../components/Parent_SignUp/signup";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
-import Landing from "../pages/Landing";
+import LandingPage from "../pages/LandingPage";
 
 interface RouteType {
     path: string,
@@ -12,7 +12,7 @@ interface RouteType {
 const routes: RouteType[] = [
     {
         path: "/",
-        component: Landing,
+        component: LandingPage,
         name: "Landing page"
     },
     {
