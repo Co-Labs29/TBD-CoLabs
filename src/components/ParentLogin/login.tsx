@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 const ParentLogin = () => {
   const [loginParent, setLoginParent] = useState({
     email: "",
@@ -25,8 +26,9 @@ const ParentLogin = () => {
         setShowErrorMessage(true);
       } else {
         const userData = await response.json();
-        const { firstName } = userData; 
+        const { firstName, parentID } = userData; 
         localStorage.setItem("firstName", firstName);
+        localStorage.setItem("parentID", parentID)
         navigate("/dashboard");
       }
     } catch (error) {
@@ -37,6 +39,7 @@ const ParentLogin = () => {
   };
 
   return (
+    <>
     <div className="bg-white p-8 max-w-md">
       <form onSubmit={handleLogin}>
         <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
@@ -77,6 +80,7 @@ const ParentLogin = () => {
       </form>
       {showErrorMessage && <div className="text-red-600">{error}</div>}
     </div>
+    </>
   );
 };
 

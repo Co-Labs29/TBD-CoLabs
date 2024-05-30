@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Navbar from "../Navbar";
 
 const ParentSignup = () => {
   const [parentUser, setParentUser] = useState({
@@ -43,6 +44,8 @@ const ParentSignup = () => {
   }
 
   return (
+    <>
+    <Navbar />
     <div className="flex items-center justify-center min-h-screen" id="signup">
       <form className="bg-white p-8 rounded-lg shadow-md border-2 border-gray-400 w-full max-w-lg">
         <h1 className="text-center font-bold text-xl mb-7">Sign up</h1>
@@ -87,12 +90,13 @@ const ParentSignup = () => {
           className="text-purple-800 border-2 border-purple-700 rounded-xl px-10 py-2 mt-4 md:mt-0 md:ml-24"
           style={{ marginLeft: "auto", marginRight: "auto", display: "block" }}
         >
-          Login
+          Signup
         </button>
       </form>
 
       {showMessage && <div className="mt-4 text-red-600">{error}</div>}
     </div>
+    </>
   );
 };
 
