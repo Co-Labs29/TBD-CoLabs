@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../Navbar";
+
 
 const ParentLogin = () => {
   const [loginParent, setLoginParent] = useState({
@@ -26,8 +26,9 @@ const ParentLogin = () => {
         setShowErrorMessage(true);
       } else {
         const userData = await response.json();
-        const { firstName } = userData; 
+        const { firstName, parentID } = userData; 
         localStorage.setItem("firstName", firstName);
+        localStorage.setItem("parentID", parentID)
         navigate("/dashboard");
       }
     } catch (error) {

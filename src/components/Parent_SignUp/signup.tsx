@@ -90,7 +90,7 @@ const ParentSignup = () => {
           className="text-purple-800 border-2 border-purple-700 rounded-xl px-10 py-2 mt-4 md:mt-0 md:ml-24"
           style={{ marginLeft: "auto", marginRight: "auto", display: "block" }}
         >
-          Login
+          Signup
         </button>
       </form>
 
