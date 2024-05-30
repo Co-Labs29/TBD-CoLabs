@@ -2,10 +2,10 @@ import Navbar from '../components/Navbar'
 
 const LandingPage = () => {
   return (
-    <div className='h-full'>
+    <div className='h-screen'>
     <Navbar />
-    <div className="w-full h-full">
-      <div className="flex flex-col md:justify-center md:pt-[120px] md:px-[55px] md:gap-[40px] bg-landing-background md:flex-row w-full h-full">
+    <div className="">
+      <div className="flex flex-col md:justify-center md:pt-[120px] md:px-[55px] md:gap-[100px] bg-landing-background md:flex-row w-full h-full">
         <div className="flex flex-col items-center md:w-[850px] md:pt-[47px] w-full pt-[30px] px-[30px]">
           <p className="md:text-[64px] text-[28px] text-center leading-[42px] font-bold md:leading-[96px] text-neutral-black-ish w-full md:w-[650px]">
             Start your child on a savings journey
@@ -15,11 +15,11 @@ const LandingPage = () => {
             complete chores to earn money.
           </p>
         </div>
-        <div className=" flex justify-center w-[450px]">
+        <div className="flex justify-center">
           <img
             src="/Mobile_Mockup.png"
             alt="Phone"
-            className="w-[208px] h-[294px] md:h-[421px] md:w-[350px] self-end"
+            className="w-[208px] h-[294px] md:h-[421px] md:w-[350px]"
           />
         </div>
       </div>
