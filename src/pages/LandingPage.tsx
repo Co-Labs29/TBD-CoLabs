@@ -27,8 +27,8 @@ const LandingPage = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col md:flex-row justify-center md:py-[120px] md:px-[55px] px-[30px] gap-[50px] h-full" id='signup'>
-  <div className="pt-[60px] w-full md:w-[570px] flex flex-col flex-grow">
+      <div className="flex justify-center flex-col md:flex-row md:py-[120px] md:px-[55px] px-[30px]  h-full" id='signup'>
+  <div className="pt-[60px] md:max-w-[730px] flex flex-col flex-grow">
     <div className="flex flex-col">
       <p className="text-[36px] font-bold text-neutral-black-ish">Our features</p>
       <p className="pt-[20px] text-neutral-black-ish">How Little Savers will help young children build good savings habits and prepare them for the future.</p>
