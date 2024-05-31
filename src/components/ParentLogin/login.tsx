@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import config from "../../config/config";
 
 
 const ParentLogin = () => {
+  const url = config.backendURL
   const [loginParent, setLoginParent] = useState({
     email: "",
     password: "",
@@ -15,7 +17,7 @@ const ParentLogin = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://127.0.0.1:5000/parent_signin", {
+      const response = await fetch(`${url}/parent_signin`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginParent),

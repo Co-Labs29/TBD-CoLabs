@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import config from "../../config/config";
 
 const ChildLogin = () => {
+  const url = config.backendURL
   const [loginChild, setLoginChild] = useState({
     username: "",
     password: "",
@@ -14,7 +16,7 @@ const ChildLogin = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://127.0.0.1:5000/child_login", {
+      const response = await fetch(`${url}/child_login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginChild),
