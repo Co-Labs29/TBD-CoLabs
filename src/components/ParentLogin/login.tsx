@@ -29,6 +29,7 @@ const ParentLogin = () => {
         const { firstName, parentID } = userData; 
         localStorage.setItem("firstName", firstName);
         localStorage.setItem("parentID", parentID)
+        sessionStorage.setItem("role", "parent");
         navigate("/dashboard");
       }
     } catch (error) {

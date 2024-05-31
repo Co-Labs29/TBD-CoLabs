@@ -1,18 +1,20 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ChildLogin = () => {
   const [loginChild, setLoginChild] = useState({
-    email: "",
+    username: "",
     password: "",
-    role: "Parent",
+    role: "child",
   });
   const [error, setError] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://127.0.0.1:5000/child_signin", {
+      const response = await fetch("http://127.0.0.1:5000/child_login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginChild),
@@ -20,6 +22,9 @@ const ChildLogin = () => {
 
       if (!response.ok) {
         setError("Invalid username or password");
+      }else{
+        sessionStorage.setItem("role", "child");
+        navigate('/childProfile')
       }
     } catch (error) {
       console.error(error);
@@ -39,7 +44,7 @@ const ChildLogin = () => {
             placeholder="User Name"
             className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
             onChange={(e) =>
-              setLoginChild({ ...loginChild, email: e.target.value })
+              setLoginChild({ ...loginChild, username: e.target.value })
             }
           />
           <label

@@ -3,6 +3,7 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import LandingPage from "../pages/LandingPage";
 import ChildSignUp from "../components/ChildSignUp/ChildSignUp";
+import ChildProfile from "../pages/ChildProfile";
 
 interface RouteType {
     path: string,
@@ -35,6 +36,11 @@ const routes: RouteType[] = [
         path:'/childSignUp',
         component: ChildSignUp,
         name: "child Sign up"
+    },
+    {
+        path: '/ChildProfile',
+        component: ChildProfile,
+        name: "Child Profile"
     }
 ];
 
