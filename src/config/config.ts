@@ -1,6 +1,6 @@
 
 const config = {
-    backendURL: 'https://co-lab-backend-2.onrender.com',
+    backendURL: 'https://co-lab-backend.onrender.com',
   };
   
   export default config;
