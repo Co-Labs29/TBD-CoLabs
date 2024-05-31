@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import config from "../../config/config";
 
 const ChildSignUp = () => {
+  const url = config.backendURL
   const navigate = useNavigate()
   const [childUser, setChildUser] = useState({
     username: "",
@@ -28,7 +30,7 @@ const ChildSignUp = () => {
     e.preventDefault();
     if (childUser.password === confirmPassword) {
       try {
-        const response = await fetch("http://127.0.0.1:5000/child_signup", {
+        const response = await fetch(`${url}/child_signup`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(childUser),

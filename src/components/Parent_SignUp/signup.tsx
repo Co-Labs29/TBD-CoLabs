@@ -1,7 +1,9 @@
 import { useState } from "react"
 import Navbar from "../Navbar";
+import config from "../../config/config";
 
 const ParentSignup = () => {
+  const url =config.backendURL
   const [parentUser, setParentUser] = useState({
       first_name: "",
       email: "",
@@ -19,7 +21,7 @@ const ParentSignup = () => {
       e.preventDefault()
       if (parentUser.password === confirmPassword) {
         try {
-          const response = await fetch("http://127.0.0.1:5000/parent_signup", {
+          const response = await fetch(`${url}/parent_signup`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(parentUser)
