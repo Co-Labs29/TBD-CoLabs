@@ -1,8 +1,7 @@
-import ParentLogin from "./components/ParentLogin/login"
-import ParentSignup from "./components/Parent_SignUp/signup"
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
+
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 import routes from "./config/routes"
-import Landing from "./pages/LandingPage"
+
 
 
 const App = () => {

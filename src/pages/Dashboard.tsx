@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import  { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
-import ChildSignUp from "../components/ChildSignUp/ChildSignUp";
+
 import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {

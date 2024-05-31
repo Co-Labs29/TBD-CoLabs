@@ -24,6 +24,7 @@ const ChildLogin = () => {
 
       if (!response.ok) {
         setError("Invalid username or password");
+        setShowErrorMessage(true)
       }else{
         sessionStorage.setItem("role", "child");
         navigate('/childProfile')
