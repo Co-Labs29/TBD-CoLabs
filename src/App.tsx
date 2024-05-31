@@ -1,5 +1,5 @@
 
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import {Routes, Route, HashRouter} from "react-router-dom"
 import routes from "./config/routes"
 
 
@@ -7,7 +7,7 @@ import routes from "./config/routes"
 const App = () => {
   return (
     // change to HashRouter before deployment
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         { routes.map((route: any, index: any) => (
           <Route
@@ -19,7 +19,7 @@ const App = () => {
             />
         )) }
       </Routes>
-  </BrowserRouter>
+  </HashRouter>
 )
 }
 export default App
