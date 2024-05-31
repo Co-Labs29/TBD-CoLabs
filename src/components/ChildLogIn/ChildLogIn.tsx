@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const ChildLogin = () => {
   const [loginChild, setLoginChild] = useState({
-    email: "",
+    username: "",
     password: "",
     role: "Parent",
   });
@@ -12,7 +12,7 @@ const ChildLogin = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://127.0.0.1:5000/child_signin", {
+      const response = await fetch("http://127.0.0.1:5000/child_login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginChild),
@@ -39,7 +39,7 @@ const ChildLogin = () => {
             placeholder="User Name"
             className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
             onChange={(e) =>
-              setLoginChild({ ...loginChild, email: e.target.value })
+              setLoginChild({ ...loginChild, username: e.target.value })
             }
           />
           <label
