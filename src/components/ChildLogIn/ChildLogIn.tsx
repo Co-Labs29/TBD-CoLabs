@@ -1,13 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ChildLogin = () => {
   const [loginChild, setLoginChild] = useState({
     username: "",
     password: "",
-    role: "Parent",
+    role: "child",
   });
   const [error, setError] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +22,9 @@ const ChildLogin = () => {
 
       if (!response.ok) {
         setError("Invalid username or password");
+      }else{
+        sessionStorage.setItem("role", "child");
+        navigate('/childProfile')
       }
     } catch (error) {
       console.error(error);
