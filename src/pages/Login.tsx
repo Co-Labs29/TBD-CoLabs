@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ParentLogin from "../components/ParentLogin/login";
 import ChildLogIn from "../components/ChildLogIn/ChildLogIn";
 import Navbar from "../components/Navbar";
