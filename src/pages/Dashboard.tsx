@@ -145,20 +145,20 @@ const Dashboard = () => {
               <div className="w-[280px] mt-[24px]">
                 <div className="w-[216px]">
                 <div className="flex items-center gap-[8px] mt-[32px]">
-                  <img src="/public/Wallet.svg" alt="Wallet" />
+                  <img src="/Piggy.svg" alt="Wallet" />
                   <p className="font-bold text-[18px]">Goals</p>
                 </div>
                 <p className="text-neutral-black-ish font-bold text-[44px] pt-[12px]">
                   $100
                 </p>
                 <p className="text-[14px] text-neutral-black-ish">2 goals</p>
-                <ProgressBar progress={progress} />
+                <ProgressBar progress={40} />
                 </div>
               </div>
               <div className="w-[280px] mt-[24px]">
                 <div className="w-[216px]">
                 <div className="flex items-center gap-[8px] mt-[32px]">
-                  <img src="/public/Wallet.svg" alt="Wallet" />
+                  <img src="/CircleCheck.svg" alt="Wallet" />
                   <p className="font-bold text-[18px]">Chores</p>
                 </div>
                 <p className="text-neutral-black-ish font-bold text-[44px] pt-[12px]">
@@ -193,7 +193,7 @@ const Dashboard = () => {
               <div className="w-[280px] mt-[24px]">
                 <div className="w-[216px]">
                 <div className="flex items-center gap-[8px] mt-[32px]">
-                  <img src="/public/Wallet.svg" alt="Wallet" />
+                  <img src="/Piggy.svg" alt="Wallet" />
                   <p className="font-bold text-[18px]">Goals</p>
                 </div>
                 <p className="text-neutral-black-ish font-bold text-[44px] pt-[12px]">
@@ -206,7 +206,7 @@ const Dashboard = () => {
               <div className="w-[280px] mt-[24px]">
                 <div className="w-[216px]">
                 <div className="flex items-center gap-[8px] mt-[32px]">
-                  <img src="/public/Wallet.svg" alt="Wallet" />
+                  <img src="/CircleCheck.svg" alt="Wallet" />
                   <p className="font-bold text-[18px]">Chores</p>
                 </div>
                 <p className="text-neutral-black-ish font-bold text-[44px] pt-[12px]">
