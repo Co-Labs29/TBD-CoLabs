@@ -7,7 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'neutral-black-ish': "#1C1816"
+        'neutral-black-ish': "#1C1816",
+        'progress-bar': "#3DAB33"
       }
     },
   },
