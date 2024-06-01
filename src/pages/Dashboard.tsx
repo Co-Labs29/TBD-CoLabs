@@ -5,20 +5,20 @@ import ProgressBar from "./progressBar";
 
 const Dashboard = () => {
   const [firstName, setFirstName] = useState("");
-  const [parentID, setParentId] = useState<string | null>(null);
-  const [progress, setProgress] = useState(50)
+  // const [parentID, setParentId] = useState<string | null>(null);
+  // const [progress, setProgress] = useState(50)
   const navigate = useNavigate();
   const children = true;
 
   useEffect(() => {
     const storedFirstName = localStorage.getItem("firstName");
-    const storedParentID = localStorage.getItem("parentID");
+    // const storedParentID = localStorage.getItem("parentID");
     if (storedFirstName !== null) {
       setFirstName(storedFirstName);
     }
-    if (storedParentID !== null) {
-      setParentId(storedParentID);
-    }
+    // if (storedParentID !== null) {
+    //   setParentId(storedParentID);
+    // }
   }, []);
 
   const handleSignUpClick = () => {
