@@ -126,7 +126,7 @@ const Dashboard = () => {
           </p>
           <div className="ml-[32px] mt-[24px]">
             <div className="flex items-center pt-[24px] mb-[24px]">
-              <img src="/public/Avatar1.svg" alt="avatar" width="40px" />
+              <img src="/Avatar1.svg" alt="avatar" width="40px" />
               <p className="text-[18px] m-2">Billy</p>
               <Link to="/childProfile" className="ml-[32px] underline">
                 View Profile
@@ -135,7 +135,7 @@ const Dashboard = () => {
             <div className="flex items-center gap-4 pl-[32px]"> {/* Fixed gap class */}
               <div className="w-[280px] mt-[24px]">
                 <div className="flex items-center gap-[8px] mt-[32px]">
-                  <img src="/public/Wallet.svg" alt="Wallet" />
+                  <img src="/Wallet.svg" alt="Wallet" />
                   <p className="font-bold text-[18px]">Wallet</p>
                 </div>
                 <p className="text-neutral-black-ish font-bold text-[44px] pt-[12px]">
@@ -174,7 +174,7 @@ const Dashboard = () => {
           
           <div className="ml-[32px] mt-[24px]">
             <div className="flex items-center pt-[24px] mb-[24px]">
-              <img src="/public/Avatar1.svg" alt="avatar" width="40px" />
+              <img src="/Avatar1.svg" alt="avatar" width="40px" />
               <p className="text-[18px] m-2">Timmy</p>
               <Link to="/childProfile" className="ml-[32px] underline">
                 View Profile
@@ -183,7 +183,7 @@ const Dashboard = () => {
             <div className="flex items-center gap-4 pl-[32px]"> {/* Fixed gap class */}
               <div className="w-[280px] mt-[24px]">
                 <div className="flex items-center gap-[8px] mt-[32px]">
-                  <img src="/public/Wallet.svg" alt="Wallet" />
+                  <img src="/Wallet.svg" alt="Wallet" />
                   <p className="font-bold text-[18px]">Wallet</p>
                 </div>
                 <p className="text-neutral-black-ish font-bold text-[44px] pt-[12px]">
