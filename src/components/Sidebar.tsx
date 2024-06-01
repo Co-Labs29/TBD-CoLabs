@@ -19,7 +19,7 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <div className="flex">
-        <aside className="w-40 h-full flex flex-col items-center justify-between fixed top-0 left-0 border-r-2 border-gray-300 font-semibold">
+        <aside className="w-40 h-full flex flex-col items-center justify-between  top-0 left-0 border-r-2 border-gray-300 font-semibold">
           <div className="mt-5">
             <div className='text-2xl md:order-1 font-bold ml-2'>
               <img src="/Logo.jpg" alt="Logo" className='h-5 w-13' />
