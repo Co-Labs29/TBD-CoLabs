@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Navbar from "../Navbar";
 import config from "../../config/config";
+import { useNavigate } from "react-router-dom";
 
 const ParentSignup = () => {
   const url =config.backendURL
@@ -13,6 +14,7 @@ const ParentSignup = () => {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [error, setError] = useState("")
   const [showMessage, setShowMessage] = useState(false)
+  const navigate = useNavigate()
   console.log('parentUser :>> ', parentUser);
   console.log('confirmPassword :>> ', confirmPassword);
 
@@ -33,6 +35,8 @@ const ParentSignup = () => {
             return;
           } else {
             setShowMessage(true)
+            navigate("/parentSignup")
+            
           }
         } catch (error) {
           console.error(error)
