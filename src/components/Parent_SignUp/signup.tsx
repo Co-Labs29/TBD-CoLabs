@@ -35,7 +35,7 @@ const ParentSignup = () => {
             return;
           } else {
             setShowMessage(true)
-            navigate("/parentSignup")
+            navigate("/Login")
             
           }
         } catch (error) {
