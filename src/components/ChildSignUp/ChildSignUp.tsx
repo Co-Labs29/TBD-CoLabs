@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {useNavigate } from "react-router-dom";
 import config from "../../config/config";
 
+
 const ChildSignUp = () => {
   const url = config.backendURL
   const navigate = useNavigate()
@@ -41,6 +42,7 @@ const ChildSignUp = () => {
           return;
         } else {
           setShowMessage(true);
+          navigate('/dashboard')
         }
       } catch (error) {
         console.error(error);
