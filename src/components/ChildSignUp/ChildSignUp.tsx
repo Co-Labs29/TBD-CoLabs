@@ -4,12 +4,13 @@ import config from "../../config/config";
 
 
 const ChildSignUp = () => {
+  const parent_id = localStorage.getItem("parentID")
   const url = config.backendURL
   const navigate = useNavigate()
   const [childUser, setChildUser] = useState({
     username: "",
     password: "",
-    parent_id: "",
+    parent_id: parent_id,
     role: "Child",
     selectedIcon: null as null | string,
     availableIcons: [
@@ -132,21 +133,7 @@ const ChildSignUp = () => {
               className="w-full px-3 py-2 mb-4 border rounded-lg"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-            <label
-              htmlFor="parentID"
-              className="block text-gray-700 font-bold mb-2"
-            >
-              Parent ID
-            </label>
-            <input
-              type="text"
-              id="parentID"
-              placeholder="Parent ID"
-              className="w-full px-3 py-2 mb-4 border rounded-lg"
-              onChange={(e) =>
-                setChildUser({ ...childUser, parent_id: e.target.value })
-              }
-            />
+           
             <label className="text-gray-700 font-bold mb-2 flex justify-center">
               Choose Icon
             </label>
