@@ -40,6 +40,7 @@ function Goals() {
 
   const handleEmojiSelect = (emojiData: any, event: any) => {
     setGoal((prevGoal) => ({ ...prevGoal, img: emojiData.emoji }));
+    console.log(event)
   };
   
 
