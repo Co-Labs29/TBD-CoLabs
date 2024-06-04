@@ -3,6 +3,7 @@ import Navbar from "../Navbar";
 import config from "../../config/config";
 import { useNavigate } from "react-router-dom";
 
+
 const ParentSignup = () => {
   const url = config.backendURL;
   const [parentUser, setParentUser] = useState({
@@ -26,15 +27,14 @@ const ParentSignup = () => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        if (errorData.message === "Username already exists") {
-          setError("Username already exists. Please choose another username.");
-        } else {
-          setError(errorData.message || "Error signing up. Please try again.");
-        }
+        setError(errorData.error || "Error signing up. Please try again.");
         setShowMessage(true);
       } else {
+        const data = await response.json();
+        const token = data.token; 
+        localStorage.setItem("token", token); 
         setShowMessage(true);
-        navigate("/Login");
+        navigate("/login");
       }
     } catch (error) {
       console.error(error);

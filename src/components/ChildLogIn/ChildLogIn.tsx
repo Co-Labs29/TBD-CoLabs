@@ -29,6 +29,9 @@ const ChildLogin = () => {
         setError("Invalid username or password");
         setShowErrorMessage(true);
       } else {
+        const data = await response.json();
+        const token = data.token; 
+        localStorage.setItem("token", token); 
         sessionStorage.setItem("role", "child");
         navigate('/childProfile');
       }

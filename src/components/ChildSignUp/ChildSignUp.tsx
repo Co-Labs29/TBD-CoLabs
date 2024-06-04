@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import config from "../../config/config";
 
-
 const ChildSignUp = () => {
-  const parent_id = localStorage.getItem("parentID")
-  const url = config.backendURL
-  const navigate = useNavigate()
+  const parent_id = sessionStorage.getItem("parentID");
+  const url = config.backendURL;
+  const navigate = useNavigate();
   const [childUser, setChildUser] = useState({
     username: "",
     password: "",
     parent_id: parent_id,
     role: "Child",
-    selectedIcon: null as null | string,
+    selectedIcon: "Avatar1.svg", 
     availableIcons: [
       "Avatar1.svg",
       "Avatar2.svg",
@@ -31,19 +30,33 @@ const ChildSignUp = () => {
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (childUser.password === confirmPassword) {
+      const formData = {
+        username: childUser.username,
+        password: childUser.password,
+        role: childUser.role,
+        parent_id: childUser.parent_id,
+        img: childUser.selectedIcon, 
+      };
+
       try {
         const response = await fetch(`${url}/child_signup`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(childUser),
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify(formData),
         });
         if (!response.ok) {
           const errorData = await response.json();
           setError(errorData.message);
           return;
         } else {
+          const data = await response.json();
+          const token = data.token;
+          localStorage.setItem("token", token);
           setShowMessage(true);
-          navigate('/dashboard')
+          navigate('/dashboard');
         }
       } catch (error) {
         console.error(error);
@@ -54,14 +67,13 @@ const ChildSignUp = () => {
     }
   };
 
-
   const handleCancel = () => {
     setChildUser({
       username: "",
       password: "",
       parent_id: "",
       role: "Child",
-      selectedIcon: null,
+      selectedIcon: "Avatar1.svg",
       availableIcons: [
         "Avatar1.svg",
         "Avatar2.svg",
@@ -77,7 +89,6 @@ const ChildSignUp = () => {
     setError("");
     setShowMessage(false);
     navigate('/dashboard')
-
   };
 
   const handleIconSelect = (icon: string) => {
@@ -138,26 +149,11 @@ const ChildSignUp = () => {
               Choose Icon
             </label>
             <div className="flex flex-wrap justify-center mb-4">
-              {childUser.availableIcons.slice(0, 4).map((icon, index) => (
+              {childUser.availableIcons.map((icon, index) => (
                 <img
                   key={index}
-                  src={icon}
+                  src={`${icon}`} 
                   alt={`Icon ${index + 1}`}
-                  className={
-                    childUser.selectedIcon === icon
-                      ? "w-12 h-12 border-2 border-purple-700 rounded-full cursor-pointer mr-2 mb-2"
-                      : "w-12 h-12 rounded-full cursor-pointer mr-2 mb-2"
-                  }
-                  onClick={() => handleIconSelect(icon)}
-                />
-              ))}
-            </div>
-            <div className="flex flex-wrap justify-center">
-              {childUser.availableIcons.slice(4).map((icon, index) => (
-                <img
-                  key={index + 4}
-                  src={icon}
-                  alt={`Icon ${index + 5}`}
                   className={
                     childUser.selectedIcon === icon
                       ? "w-12 h-12 border-2 border-purple-700 rounded-full cursor-pointer mr-2 mb-2"
