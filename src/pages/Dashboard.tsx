@@ -29,7 +29,7 @@ const Dashboard = () => {
     <div className="flex flex-row">
       <Sidebar />
       {!children ? (
-        <div className="flex-grow"> {/* Added flex-grow */}
+        <div className="flex-grow"> 
           <div className="ml-[126px] mt-[48px]">
             <p className="text-neutral-black-ish font-bold text-[22px]">
               Hello, {firstName}
@@ -65,7 +65,7 @@ const Dashboard = () => {
             <p className="font-bold text-neutral-black-ish text-[28px] mt-[80px]">
               Children Overview
             </p>
-            <div className="ml-[207px] w-[928px] mt-[48px] flex flex-col"> {/* Fixed ml class */}
+            <div className="ml-[207px] w-[928px] mt-[48px] flex flex-col"> 
               <p className="text-center">
                 Create a child profile to start saving for goals.
               </p>
@@ -89,7 +89,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <div>
-        <div className="flex-grow ml-[126px] mt-[48px] gap-[12px]"> {/* Added flex-grow */}
+        <div className="flex-grow ml-[126px] mt-[48px] gap-[12px]"> 
           <p className="text-neutral-black-ish font-bold text-[22px]">
             Hello, {firstName}
           </p>
@@ -132,7 +132,7 @@ const Dashboard = () => {
                 View Profile
               </Link>
             </div>
-            <div className="flex items-center gap-4 pl-[32px]"> {/* Fixed gap class */}
+            <div className="flex items-center gap-4 pl-[32px]"> 
               <div className="w-[280px] mt-[24px]">
                 <div className="flex items-center gap-[8px] mt-[32px]">
                   <img src="/Wallet.svg" alt="Wallet" />
@@ -170,7 +170,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="flex-grow ml-[126px] mt-[48px] gap-[12px]"> {/* Added flex-grow */}
+        <div className="flex-grow ml-[126px] mt-[48px] gap-[12px]"> 
           
           <div className="ml-[32px] mt-[24px]">
             <div className="flex items-center pt-[24px] mb-[24px]">
@@ -180,7 +180,7 @@ const Dashboard = () => {
                 View Profile
               </Link>
             </div>
-            <div className="flex items-center gap-4 pl-[32px]"> {/* Fixed gap class */}
+            <div className="flex items-center gap-4 pl-[32px]"> 
               <div className="w-[280px] mt-[24px]">
                 <div className="flex items-center gap-[8px] mt-[32px]">
                   <img src="/Wallet.svg" alt="Wallet" />
