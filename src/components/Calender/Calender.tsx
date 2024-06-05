@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { format, startOfWeek, addDays, addWeeks, subWeeks } from 'date-fns';
 
 const Calendar = () => {

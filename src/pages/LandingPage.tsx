@@ -1,5 +1,5 @@
 import Navbar from '../components/Navbar'
-import Calender from "../components/Calender/Calender.jsx"
+import Calendar from '../components/Calender/Calender';
 
 const LandingPage = () => {
   return (
