@@ -1,7 +1,11 @@
 import Sidebar from "./Sidebar"
 import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const Chores = () => {
+
+  const navigate = useNavigate()
+
   return (
     <div className="flex gap-[126px]">
         <Sidebar />
@@ -24,7 +28,7 @@ const Chores = () => {
               </Link>
               <button
                 type="button"
-                onClick={() => {}}
+                onClick={() => navigate("/parent_all_chores")}
                 className="text-purple-800 border-2 border-purple-700 rounded-xl pr-10 pl-[14px] font-semibold py-2 mt-4 relative ml-auto mr-4"
               >
                 View Chores

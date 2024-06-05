@@ -8,6 +8,7 @@ import Chores from "../components/Chores";
 import CreateChore from "../pages/CreateChore";
 
 import Goals from "../components/Goals/Goals";
+import ParentAllChores from "../components/ParentAllChores";
 
 interface RouteType {
     path: string,
@@ -63,6 +64,11 @@ const routes: RouteType[] = [
         component: Goals,
         name: "Goals"
 
+    },
+    {
+        path: "/parent_all_chores",
+        component: ParentAllChores,
+        name: "All parent chores"
     }
 ];
 
