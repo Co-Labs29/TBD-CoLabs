@@ -4,6 +4,9 @@ import Login from "../pages/Login";
 import LandingPage from "../pages/LandingPage";
 import ChildSignUp from "../components/ChildSignUp/ChildSignUp";
 import ChildProfile from "../pages/ChildProfile";
+import Chores from "../components/Chores";
+import CreateChore from "../pages/CreateChore";
+
 import Goals from "../components/Goals/Goals";
 
 interface RouteType {
@@ -42,11 +45,24 @@ const routes: RouteType[] = [
         path: '/ChildProfile',
         component: ChildProfile,
         name: "Child Profile"
+
+    },
+    {
+        path: "/chores",
+        component: Chores,
+        name: "Chores"
+    },
+    {
+        path: "/create_chore",
+        component: CreateChore,
+        name: "Create Chore"
+
     }, 
     {
         path: '/goals',
         component: Goals,
         name: "Goals"
+
     }
 ];
 
