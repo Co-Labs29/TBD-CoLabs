@@ -18,7 +18,24 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Type Definitions for Node */
+    "types": ["node"],
+
+    /* Paths and Base URL */
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@utils/*": ["utils/*"],
+      "@styles/*": ["styles/*"]
+    },
+
+    /* Source Maps */
+    "sourceMap": true,
+
+    /* Incremental Compilation */
+    "incremental": true
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

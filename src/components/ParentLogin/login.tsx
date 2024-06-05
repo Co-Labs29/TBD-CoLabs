@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import config from "../../config/config";
 import { TailSpin } from 'react-loader-spinner';
 
+
+
 const ParentLogin = () => {
   const url = config.backendURL;
   const [loginParent, setLoginParent] = useState({
@@ -11,7 +13,6 @@ const ParentLogin = () => {
     role: "Parent",
   });
   const [error, setError] = useState("");
-  const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -27,36 +28,36 @@ const ParentLogin = () => {
 
       if (!response.ok) {
         setError("Invalid username or password");
-        setShowErrorMessage(true);
       } else {
         const userData = await response.json();
-        const { firstName, parentID } = userData; 
-        localStorage.setItem("firstName", firstName);
-        localStorage.setItem("parentID", parentID);
+        const { token, parentID, childIDs } = userData;
+        localStorage.setItem("token", token); 
         sessionStorage.setItem("role", "parent");
+        sessionStorage.setItem("parentID", parentID);
+        sessionStorage.setItem("childIDs", JSON.stringify(childIDs)); 
         navigate("/dashboard");
       }
     } catch (error) {
       console.error(error);
       setError("Error signing in. Please try again.");
-      setShowErrorMessage(true);
     } finally {
       setLoading(false);
     }
   };
+
 
   return (
     <>
       <div className="bg-white p-8 max-w-md">
         {loading ? (
           <div className="flex justify-center items-center">
-           <div style={{ marginRight: '10px' }}>
-            <TailSpin
-              height="50"
-              width="50"
-              color="#ECEBFA"
-              ariaLabel="loading"
-            />
+            <div style={{ marginRight: '10px' }}>
+              <TailSpin
+                height="50"
+                width="50"
+                color="#ECEBFA"
+                ariaLabel="loading"
+              />
             </div>
             <p>Loading...</p>
           </div>
@@ -99,10 +100,12 @@ const ParentLogin = () => {
             </button>
           </form>
         )}
-        {showErrorMessage && <div className="text-red-600">{error}</div>}
+        {error && <div className="text-red-600">{error}</div>}
       </div>
     </>
   );
 };
 
 export default ParentLogin;
+
+
