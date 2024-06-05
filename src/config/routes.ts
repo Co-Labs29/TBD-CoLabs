@@ -7,6 +7,8 @@ import ChildProfile from "../pages/ChildProfile";
 import Chores from "../components/Chores";
 import CreateChore from "../pages/CreateChore";
 
+import Goals from "../components/Goals/Goals";
+
 interface RouteType {
     path: string,
     component: () => JSX.Element,
@@ -43,6 +45,7 @@ const routes: RouteType[] = [
         path: '/ChildProfile',
         component: ChildProfile,
         name: "Child Profile"
+
     },
     {
         path: "/chores",
@@ -53,6 +56,13 @@ const routes: RouteType[] = [
         path: "/create_chore",
         component: CreateChore,
         name: "Create Chore"
+
+    }, 
+    {
+        path: '/goals',
+        component: Goals,
+        name: "Goals"
+
     }
 ];
 
