@@ -32,6 +32,8 @@ const CreateChore = () => {
     amount: 0
   });
 
+  console.log('chore :>> ', chore);
+
   const navigate = useNavigate()
 
   const url = config.backendURL;
@@ -63,7 +65,7 @@ const CreateChore = () => {
       return;
     }
     try {
-      const response = await fetch(`${url}/add_chore/${selectedChildId}`, {
+      const response = await fetch(`${url}/add_chore/${selectedChildId}/1`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(chore)
