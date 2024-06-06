@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
 import config from "../config/config";
 import { useNavigate } from "react-router-dom";
 

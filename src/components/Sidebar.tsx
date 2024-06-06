@@ -24,14 +24,13 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      {/* Hamburger button for screens smaller than 1316px */}
       <div className="custom-1316:hidden">
         <button onClick={toggleDrawer} className="p-2 bg-gray-300 rounded-md">
           <img src="/icons8-menu.svg" alt="Menu" className="w-6 h-6" />
         </button>
       </div>
 
-      {/* Overlay when the sidebar is open */}
+    
       <div
         className={`fixed inset-0 bg-gray-800 bg-opacity-50 z-40 transition-opacity ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -39,7 +38,7 @@ const Sidebar: React.FC = () => {
         onClick={toggleDrawer}
       ></div>
 
-      {/* Sidebar */}
+     
       <aside
         className={`fixed inset-y-0 left-0 transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
