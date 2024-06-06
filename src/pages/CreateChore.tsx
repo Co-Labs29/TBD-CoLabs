@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
 import config from "../config/config";
 import { useNavigate } from "react-router-dom";
 
@@ -94,7 +93,6 @@ const CreateChore = () => {
 
   return (
     <div className="flex gap-[221px]">
-      <Sidebar />
       <div className="w-[738px] flex justify-center mt-[80px] border">
         <form className="w-[456px] mt-[80px]" onSubmit={e => handleCreateChore(e)}>
           <label htmlFor="name" className="block mb-2">

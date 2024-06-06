@@ -7,9 +7,10 @@ const Chores = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex gap-[126px]">
+    <div className="lg:mt-2">
         <Sidebar />
-        <div className="pt-[48px]">
+      <div className="flex justify-center">
+        <div className="pt-[48px] flex-col items-center ">
         <p>Chores</p>
         <div>
         <Link
@@ -41,6 +42,7 @@ const Chores = () => {
               </button>
               
               </div>
+        </div>
         </div>
     </div>
   )
