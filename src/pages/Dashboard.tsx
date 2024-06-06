@@ -26,7 +26,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="">
+    <div className="flex">
       <div>
       <Sidebar />
       </div>

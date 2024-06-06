@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
 
      
       <aside
-        className={`fixed inset-y-0 left-0 transform ${
+        className={`h-screen inset-y-0 left-0 transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } transition-transform custom-1316:translate-x-0 z-50 custom-1316:z-auto bg-white w-64 custom-1316:w-64 h-full border-r-2 border-gray-300 flex flex-col items-center justify-between font-semibold`}
       >

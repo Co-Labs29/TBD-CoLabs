@@ -31,6 +31,7 @@ const CreateChore = () => {
     amount: 0
   });
 
+
   console.log('chore :>> ', chore);
 
   const navigate = useNavigate()
@@ -43,7 +44,7 @@ const CreateChore = () => {
 
   const fetchChildren = async () => {
     try {
-      const response = await fetch(`${url}/my_children/1`);
+      const response = await fetch(`${url}/my_children/${sessionStorage.getItem("parentID")}`);
       const data = await response.json();
       setChildren(data);
     } catch (error) {
@@ -64,7 +65,7 @@ const CreateChore = () => {
       return;
     }
     try {
-      const response = await fetch(`${url}/add_chore/${selectedChildId}/1`, {
+      const response = await fetch(`${url}/add_chore/${selectedChildId}/${sessionStorage.getItem("parentID")}`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(chore)
@@ -92,7 +93,7 @@ const CreateChore = () => {
   };
 
   return (
-    <div className="flex gap-[221px]">
+    <div className="flex justify-center">
       <div className="w-[738px] flex justify-center mt-[80px] border">
         <form className="w-[456px] mt-[80px]" onSubmit={e => handleCreateChore(e)}>
           <label htmlFor="name" className="block mb-2">
