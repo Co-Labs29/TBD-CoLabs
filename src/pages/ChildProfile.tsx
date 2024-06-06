@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { useNavigate } from "react-router-dom";
 import Calendar_ChildProfile from "../components/Calender/Calender_ChildProfile";
-import Chores from "@components/Chores";
+
 
 const ChildProfile = () => {
   const navigate = useNavigate();
