@@ -79,13 +79,13 @@ const ChildProfile = () => {
  
   return (
     <>
-      <div className="">
+      <div className="flex">
         <Sidebar />
         <div className="md:flex md:flex-col md:justify-start lg:mr-96 lg:pr-60">
           <h1 className="flex flex-row justify-center mb-5 font-bold text-3xl lg:mt-9 lg:ml-72">
             Child Profile
           </h1>
-          <div className="flex row justify-center lg:ml-96 lg:absolute lg:mt-40 lg:pl-60 pr-52">
+          <div className="flex row justify-center  lg:absolute lg:mt-40 lg:pl-60 pr-52">
             {childInfo.map((child: any, index: number) => (
               <div key={index} className="ml-1" style={{ width: "120px" }}>
                 <img

@@ -7,7 +7,7 @@ const Chores = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="lg:mt-2">
+    <div className="lg:mt-2 flex">
         <Sidebar />
       <div className="flex justify-center">
         <div className="pt-[48px] flex-col items-center ">

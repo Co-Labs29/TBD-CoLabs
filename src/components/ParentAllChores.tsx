@@ -25,7 +25,7 @@ const ParentAllChores = () => {
   const url = config.backendURL
   const fetchAllChores = async () => {
     try {
-      const response = await fetch(`${url}/all_chores/1`)
+      const response = await fetch(`${url}/all_chores/${sessionStorage.getItem("parentID")}`)
       const data = await response.json()
       console.log('data :>> ', data);
       if (response.ok) {
