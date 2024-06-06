@@ -10,10 +10,12 @@ module.exports = {
         'neutral-black-ish': "#1C1816",
         'progress-bar': "#3DAB33",
         'lightish-purple': "#ECEBFA",
-        'dark-purple': "#4233AB"
-      }
+        'dark-purple': "#4233AB",
+      },
+      screens: {
+        'custom-1316': '1354px',
+      },
     },
   },
   plugins: [],
 }
-

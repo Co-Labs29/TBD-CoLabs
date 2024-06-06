@@ -26,11 +26,14 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-row">
+    <div className="">
+      <div>
       <Sidebar />
+      </div>
+      <div className="flex justify-center">
       {!children ? (
         <div className="flex-grow"> 
-          <div className="ml-[126px] mt-[48px]">
+          {/* <div className="ml-[126px] mt-[48px]"> */} <div>
             <p className="text-neutral-black-ish font-bold text-[22px]">
               Hello, {firstName}
             </p>
@@ -220,6 +223,7 @@ const Dashboard = () => {
         </div>
         </div>
       )}
+    </div>
     </div>
   );
   
