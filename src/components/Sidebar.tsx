@@ -24,11 +24,14 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <div className="md:hidden fixed top-4 right-4">
-        <button onClick={toggleDrawer} className="p-2 bg-gray-300 rounded-md">
-          <img src="/icons8-menu.svg" alt="Menu" className="w-6 h-6" />
-        </button>
-      </div>
+      <div className="md:hidden fixed top-0 right-4 left-0 flex justify-between items-center bg-white shadow-lg p-4 z-50">
+  <img src="/Logo.jpg" alt="logo" width={"100px"} />
+  <button onClick={toggleDrawer} className="p-2 rounded-md">
+    <img src="/icons8-menu.svg" alt="Menu" className="w-6 h-6" />
+  </button>
+</div>
+
+
 
       {isOpen && (
         <div
@@ -44,14 +47,14 @@ const Sidebar: React.FC = () => {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } md:translate-x-0 transition-transform z-50 md:z-auto bg-white ${
           isOpen ? 'w-full' : 'w-64'
-        } md:w-64 h-full border-r-2 border-gray-300 flex flex-col items-center justify-between font-semibold`}
+        } md:w-64 h-full border-r-2 flex flex-col items-center justify-between font-semibold`}
       >
         {isOpen && (
           <button
-            className="md:hidden absolute top-4 right-4 p-2 bg-gray-300 rounded-md"
+            className="md:hidden absolute top-4 right-4 p-2 rounded-md"
             onClick={toggleDrawer}
           >
-            <img src="/icons8-close.svg" alt="Close" className="w-6 h-6" />
+            <img src="/close-svgrepo-com.svg" alt="Close" className="w-6 h-6" />
           </button>
         )}
         <div className="mt-5">
