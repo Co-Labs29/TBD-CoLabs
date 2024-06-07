@@ -20,7 +20,7 @@ const Calendar_ChildProfile = () => {
       </div>
 
     
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between w-[80%]">
         {daysOfWeek.map((day, index) => {
           const date = addDays(startOfCurrentWeek, index);
           const formattedDate = format(date, 'd');
