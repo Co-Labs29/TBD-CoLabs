@@ -4,12 +4,33 @@ import { useNavigate } from "react-router-dom";
 import Calendar_ChildProfile from "../components/Calender/Calender_ChildProfile";
 import config from "../config/config";
 
+interface ChildInfo {
+  parent_id: number;
+  child_id: number;
+  username: string;
+  img: string;
+  role: string;
+  chores: { name: string; amount: number }[];
+  wallet: { amount: number };
+  goals: {
+    id: number;
+    name: string;
+    amount: number;
+    paid: number;
+    description: string;
+    img: string;
+    link: string;
+  }[];
+}
+
+
 const ChildProfile = () => {
   const navigate = useNavigate();
-  const [childInfo, setChildInfo] = useState([]);
+  const [childInfo, setChildInfo] = useState<ChildInfo[]>([]);
   const [selectedChild, setSelectedChild] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+
 
   const url = config.backendURL;
 
@@ -33,8 +54,9 @@ const ChildProfile = () => {
         if (!response.ok) {
           throw new Error("Failed to fetch child information");
         }
-        const data = await response.json();
+        const data: ChildInfo[] = await response.json();
         setChildInfo(data);
+        console.log(data)
       } catch (error) {
         setError(error as Error);
       } finally {
@@ -60,6 +82,14 @@ const ChildProfile = () => {
 
   const handlegoalclick = () => {
     navigate("/goals");
+  };
+
+
+
+  const handleGoalClick = (goal: any ) => {
+    const goalId = goal.id
+    sessionStorage.setItem("goalId", goalId)
+    navigate("/ShowGoals");
   };
 
   return (
@@ -175,7 +205,7 @@ const ChildProfile = () => {
                   {selectedChild.goals.map((goal: any, index: number) => (
                     <div
                       key={index}
-                      className="flex flex-col relative"
+                      className="flex flex-col relative cursor-pointer"
                       style={{
                         backgroundColor: "#ECFAEB",
                         padding: "10px",
@@ -183,6 +213,7 @@ const ChildProfile = () => {
                         height: "100px",
                         marginBottom: "20px",
                       }}
+                      onClick={() => handleGoalClick(goal)}
                     >
                       <div className="flex">
                         <span className="text-6xl mr-12 absolute">
