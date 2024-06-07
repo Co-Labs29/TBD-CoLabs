@@ -12,3 +12,21 @@ body{
 #signup{
     background-color: #ECEBFA;
 }
+
+
+/* Custom scrollbar styles */
+.scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color:#786bca; 
+    border-radius: 4px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background-color: #e4e9e3; 
+    border-radius: 4px;
+  }
+  
+
