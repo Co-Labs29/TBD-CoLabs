@@ -81,10 +81,9 @@ const ChildProfile = () => {
 
   return (
     <>
-      <div className=" h-screen">
-        <div>
+      <div className="h-screen flex">
         <Sidebar />
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col">
           <h1 className="flex mt-20 font-bold text-2xl">Child Profile</h1>
           <div className="flex row justify-center lg:mt-40">
             {childInfo.map((child: any, index: number) => (
@@ -235,7 +234,7 @@ const ChildProfile = () => {
             </div>
           )}
         </div>
-        </div>
+        
       </div>
     </>
   );
