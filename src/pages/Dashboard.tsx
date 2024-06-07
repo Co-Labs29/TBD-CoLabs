@@ -20,7 +20,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="w-screen flex med:flex-row">
+    <div className="h-screen flex med:flex-row">
       <Sidebar />
       <div className="flex flex-col flex-grow p-4 md:ml-64">
         <div className="flex justify-center">

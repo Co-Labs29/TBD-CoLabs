@@ -14,6 +14,7 @@ module.exports = {
       },
       screens: {
         'custom-1316': '1354px',
+        'greater-med': '1024px'
       },
     },
   },
