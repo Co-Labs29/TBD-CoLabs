@@ -4,7 +4,7 @@ interface ProgressBarProps {
   
   const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
     return (
-      <div className="w-full bg-gray-200 rounded-full h-4">
+      <div className="w-full bg-gray-200 rounded-full h-4 ">
         <div
           className="bg-progress-bar h-4 rounded-full flex items-center justify-center"
           style={{ width: `${progress}%` }}
