@@ -24,26 +24,36 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <div className="custom-1316:hidden">
+      <div className="md:hidden fixed top-4 right-4">
         <button onClick={toggleDrawer} className="p-2 bg-gray-300 rounded-md">
           <img src="/icons8-menu.svg" alt="Menu" className="w-6 h-6" />
         </button>
       </div>
 
-    
-      <div
-        className={`fixed inset-0 bg-gray-800 bg-opacity-50 z-40 transition-opacity ${
-          isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={toggleDrawer}
-      ></div>
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-gray-800 bg-opacity-50 z-40 transition-opacity"
+          onClick={toggleDrawer}
+        ></div>
+      )}
 
-     
       <aside
-        className={`h-screen inset-y-0 left-0 transform ${
+        className={`fixed inset-y-0 ${
+          isOpen ? 'left-0' : '-left-full'
+        } md:left-0 md:relative transform ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        } transition-transform custom-1316:translate-x-0 z-50 custom-1316:z-auto bg-white w-64 custom-1316:w-64 h-full border-r-2 border-gray-300 flex flex-col items-center justify-between font-semibold`}
+        } md:translate-x-0 transition-transform z-50 md:z-auto bg-white ${
+          isOpen ? 'w-full' : 'w-64'
+        } md:w-64 h-full border-r-2 border-gray-300 flex flex-col items-center justify-between font-semibold`}
       >
+        {isOpen && (
+          <button
+            className="md:hidden absolute top-4 right-4 p-2 bg-gray-300 rounded-md"
+            onClick={toggleDrawer}
+          >
+            <img src="/icons8-close.svg" alt="Close" className="w-6 h-6" />
+          </button>
+        )}
         <div className="mt-5">
           <div className="text-2xl font-bold ml-2">
             <img src="/Logo.jpg" alt="Logo" className="h-5 w-13" />
@@ -189,10 +199,3 @@ const Sidebar: React.FC = () => {
 };
 
 export default Sidebar;
-
-
-
-
-
-
-
