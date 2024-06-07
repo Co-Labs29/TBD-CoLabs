@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { useNavigate } from "react-router-dom";
 import Calendar_ChildProfile from "../components/Calender/Calender_ChildProfile";
-
+import config from "../config/config";
 
 const ChildProfile = () => {
   const navigate = useNavigate();
@@ -10,6 +10,8 @@ const ChildProfile = () => {
   const [selectedChild, setSelectedChild] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+
+  const url = config.backendURL;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -21,7 +23,7 @@ const ChildProfile = () => {
 
     const fetchChildInfo = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/info", {
+        const response = await fetch(`${url}/info`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -76,16 +78,15 @@ const ChildProfile = () => {
   const handlegoalclick = () => {
     navigate("/goals");
   };
- 
+
   return (
     <>
-      <div className="flex">
+      <div className=" h-screen">
+        <div>
         <Sidebar />
-        <div className="md:flex md:flex-col md:justify-start lg:mr-96 lg:pr-60">
-          <h1 className="flex flex-row justify-center mb-5 font-bold text-3xl lg:mt-9 lg:ml-72">
-            Child Profile
-          </h1>
-          <div className="flex row justify-center  lg:absolute lg:mt-40 lg:pl-60 pr-52">
+        <div className="flex flex-col items-center">
+          <h1 className="flex mt-20 font-bold text-2xl">Child Profile</h1>
+          <div className="flex row justify-center lg:mt-40">
             {childInfo.map((child: any, index: number) => (
               <div key={index} className="ml-1" style={{ width: "120px" }}>
                 <img
@@ -111,136 +112,130 @@ const ChildProfile = () => {
               </div>
             ))}
           </div>
-        </div>
 
-        {selectedChild && (
-          <div className="md:flex justify-center sm:flex flex lg:mt-28 lg:static">
-            <div
-              className="md:grid grid-cols-2 gap-4 sm:mt-20"
-              style={{
-                gridTemplateRows: "160px 240px 400px",
-                gridTemplateColumns: "1fr 1fr",
-              }}
-            >
-              <div className="md:w-[300px] h-[160px] w-[400px] rounded-[8px] border border-lightgrey p-[20px] gap-[8px] ml-auto">
-                <h3 className="flex justify-center">
-                  <img
-                    src="/Wallet.svg"
-                    alt="wallet icon"
-                    style={{ width: "40px", height: "40px" }}
-                  />
-                  <span className="font-bold text-2xl">Wallet</span>
-                </h3>
-                <h1 className="font-bold text-4xl flex justify-center">
-                  ${selectedChild.wallet.amount}
-                </h1>
-              </div>
-
-              <div className="md:w-[400px] h-[500px] w-[400px] rounded-[8px] border border-lightgrey p-[20px] gap-[8px] ml-auto">
-                <h3 className="flex justify-center">
-                  <img
-                    src="/Piggy.svg"
-                    alt="Piggy"
-                    style={{ width: "40px", height: "40px" }}
-                  />
-                  <span className="font-bold text-2xl flex justify-center">
-                    Goals
-                  </span>
-                </h3>
-
-                <button
-                  type="button"
-                  onClick={handlegoalclick}
-                  className="text-purple-800 border-2 border-purple-700 px-8 py-2 mt-4 relative ml-2 m-9 rounded-md"
-                >
-                  <img
-                    src="/Plus.svg"
-                    alt="Plus sign"
-                    className="absolute left-2 top-1/2 transform -translate-y-1/2 "
-                    style={{ width: "20px", height: "20px" }}
-                  />
-                  New Goal
-                </button>
-
-                <div
-                  className="overflow-y-auto"
-                  style={{ maxHeight: "calc(100% - 120px)" }}
-                >
-                  {selectedChild.goals.map((goal: any, index: number) => (
-                    <div
-                      key={index}
-                      className="flex flex-col relative"
-                      style={{
-                        backgroundColor: "#ECFAEB",
-                        padding: "10px",
-                        borderRadius: "8px",
-                        height: "100px",
-                        marginBottom: "20px",
-                      }}
-                    >
-                      <div className="flex">
-                        <span className="text-6xl mr-12 absolute">
-                          {goal.img}
+          {selectedChild && (
+            <div className="lg:mt-28 flex">
+              <div className="lg:flex gap-4">
+                <div className="flex-col lg:mt-">
+                  <div className="md:w-[300px] h-[160px] w-[400px] rounded-[8px] border border-lightgrey mt-3">
+                    <h3 className="flex justify-center items-center mt-9">
+                      <img
+                        src="/Wallet.svg"
+                        alt="wallet icon"
+                        style={{ width: "40px", height: "40px" }}
+                      />
+                      <span className="font-bold text-2xl">Wallet</span>
+                    </h3>
+                    <h1 className="font-bold text-4xl flex justify-center">
+                      ${selectedChild.wallet.amount}
+                    </h1>
+                  </div>
+                  <div className="lg:mt-4">
+                    <div className="md:w-[300px] rounded-[8px] border border-lightgrey p-[20px] gap-[8px] ml-auto mt-3">
+                      <h3 className="flex justify-center">
+                        <img
+                          src="/CircleCheck.svg"
+                          alt="check mark"
+                          style={{ width: "40px", height: "40px" }}
+                        />
+                        <span className="font-bold text-2xl flex justify-center">
+                          Chores
                         </span>
-                        <p className="ml-32 font-semibold text-xl">
-                          {goal.name}
-                        </p>
+                      </h3>
+                      <div className="mt-12">
+                        <Calendar_ChildProfile />
                       </div>
-                      <div className="flex mt-2">
-                        <div className="bg-gray-200 h-4 rounded-xl ml-32 flex-grow relative">
-                          <div
-                            className="h-full bg-green-400 rounded-xl absolute"
-                            style={{
-                              width: `${
-                                (parseInt(goal.paid) / parseInt(goal.amount)) *
-                                100
-                              }%`,
-                            }}
-                          ></div>
-                          <p className="font-semibold pt-6">
-                            ${goal.paid}/{goal.amount}
+                      {selectedChild.chores.map((chore: any, index: any) => (
+                        <div
+                          key={index}
+                          className="flex flex-col relative mt-12"
+                          style={{
+                            backgroundColor: "#ECFAEB",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            marginBottom: "20px",
+                          }}
+                        >
+                          <h1 className="ml-10 mt-2">{chore.name}</h1>
+                          <h2 className="ml-10 mt-2">${chore.amount}</h2>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div className="md:w-[400px] w-[400px] rounded-[8px] border border-lightgrey p-[20px] gap-[8px] mt-3">
+                  <h3 className="flex justify-center">
+                    <img
+                      src="/Piggy.svg"
+                      alt="Piggy"
+                      style={{ width: "40px", height: "40px" }}
+                    />
+                    <span className="font-bold text-2xl flex justify-center">
+                      Goals
+                    </span>
+                  </h3>
+
+                  <button
+                    type="button"
+                    onClick={handlegoalclick}
+                    className="text-purple-800 border-2 border-purple-700 px-8 py-2 mt-4 relative ml-2 m-9 rounded-md"
+                  >
+                    <img
+                      src="/Plus.svg"
+                      alt="Plus sign"
+                      className="absolute left-2 top-1/2 transform -translate-y-1/2"
+                      style={{ width: "20px", height: "20px" }}
+                    />
+                    New Goal
+                  </button>
+
+                  <div className="goals-container">
+                    {selectedChild.goals.map((goal: any, index: number) => (
+                      <div
+                        key={index}
+                        className="flex flex-col relative"
+                        style={{
+                          backgroundColor: "#ECFAEB",
+                          padding: "10px",
+                          borderRadius: "8px",
+                          height: "100px",
+                          marginBottom: "20px",
+                        }}
+                      >
+                        <div className="flex">
+                          <span className="text-6xl mr-12 absolute">
+                            {goal.img}
+                          </span>
+                          <p className="ml-32 font-semibold text-xl">
+                            {goal.name}
                           </p>
                         </div>
+                        <div className="flex mt-2">
+                          <div className="bg-gray-200 h-4 rounded-xl ml-32 flex-grow relative">
+                            <div
+                              className="h-full bg-green-400 rounded-xl absolute"
+                              style={{
+                                width: `${
+                                  (parseInt(goal.paid) /
+                                    parseInt(goal.amount)) *
+                                  100
+                                }%`,
+                              }}
+                            ></div>
+                            <p className="font-semibold pt-6">
+                              ${goal.paid}/{goal.amount}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-
-              <div className="md:w-[300px] h-[500px] rounded-[8px] border border-lightgrey p-[20px] gap-[8px] ml-auto">
-              <h3 className="flex justify-center">
-                  <img
-                    src="/CircleCheck.svg"
-                    alt="check mark"
-                    style={{ width: "40px", height: "40px" }}
-                  />
-                  <span className="font-bold text-2xl flex justify-center">
-                    Chores
-                  </span>
-                </h3>
-                <div className="mt-12">
-                <Calendar_ChildProfile />
-                </div>
-                  {selectedChild.chores.map((chore: any, index: any) =>
-                    <div
-                    key={index}
-                    className="flex flex-col relative mt-12"
-                    style={{
-                      backgroundColor: "#ECFAEB",
-                      padding: "10px",
-                      borderRadius: "8px",
-                      height: "100px",
-                      marginBottom: "20px",
-                    }}
-                    >
-                      <h1 className="ml-10 mt-2">{chore.name}</h1>
-                      <h2 className="ml-10 mt-2">${chore.amount}</h2>
-                    </div>
-                  )}
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
+        </div>
       </div>
     </>
   );
