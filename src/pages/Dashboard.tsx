@@ -61,9 +61,7 @@ const Dashboard = () => {
                 Children Overview
               </p>
               <div className="mt-4 w-full max-w-xl text-center">
-                <p>
-                  Create a child profile to start saving for goals.
-                </p>
+                <p>Create a child profile to start saving for goals.</p>
                 <button
                   type="button"
                   onClick={handleSignUpClick}
@@ -118,50 +116,84 @@ const Dashboard = () => {
                 Children Overview
               </p>
               <div className="mt-6">
-                {[{ name: "Billy", wallet: 100, goals: 2, goalsAmount: 100, chores: 100, choresCount: "100" }, 
-                { name: "Timmy", wallet: 70, goals: 2, goalsAmount: 100, chores: 16, choresCount: "1/6" }].map((child) => (
-                  <div key={child.name} className="flex flex-col md:flex-row items-center md:items-start gap-4 mt-6">
-                    <div className="flex items-center w-full md:w-auto flex-col">
-                      <img src="/Avatar1.svg" alt="avatar" className="w-10 h-10" />
-                      <p className="text-lg ml-2">{child.name}</p>
-                      <Link to="/childProfile" className="ml-4 underline">
+                {[
+                  {
+                    name: "Billy",
+                    wallet: 80,
+                    goals: 2,
+                    goalsAmount: 10,
+                    chores: 100,
+                    choresCount: "100",
+                  },
+                  {
+                    name: "Timmy",
+                    wallet: 70,
+                    goals: 50,
+                    goalsAmount: 100,
+                    chores: 50,
+                    choresCount: "1/6",
+                  },
+                ].map((child) => (
+                  <div
+                    key={child.name}
+                    className="flex flex-col xl:items-start gap-4 mt-6"
+                  >
+                    <div className="flex items-center w-full xl:w-auto">
+                      <img
+                        src="/Avatar1.svg"
+                        alt="avatar"
+                        className="w-10 h-10"
+                      />
+                      <p className="text-lg xl:ml-2">{child.name}</p>
+                      <Link to="/childProfile" className="xl:ml-4 underline">
                         View Profile
                       </Link>
                     </div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-4 pl-8 w-full">
-                      <div className="w-full md:w-60 mt-4 md:mt-0">
-                        <div className="flex items-center gap-2 mt-8">
-                          <img src="/Wallet.svg" alt="Wallet" />
-                          <p className="font-bold text-lg">Wallet</p>
-                        </div>
-                        <p className="text-neutral-black-ish font-bold text-4xl pt-3">
-                          ${child.wallet}
-                        </p>
-                      </div>
-                      <div className="w-full md:w-60 mt-4 md:mt-0">
-                        <div className="flex items-center gap-2 mt-8">
-                          <img src="/Piggy.svg" alt="Piggy Bank" />
-                          <p className="font-bold text-lg">Goals</p>
-                        </div>
-                        <p className="text-neutral-black-ish font-bold text-4xl pt-3">
-                          ${child.goalsAmount}
-                        </p>
-                        <p className="text-sm text-neutral-black-ish">
-                          {child.goals} goals
-                        </p>
-                        <ProgressBar progress={child.goals} />
-                      </div>
-                      <div className="w-full md:w-60 mt-4 md:mt-0">
-                        <div className="flex items-center gap-2 mt-8">
-                          <img src="/CircleCheck.svg" alt="Chores" />
-                          <p className="font-bold text-lg">Chores</p>
-                        </div>
-                        <p className="text-neutral-black-ish font-bold text-4xl pt-3">
-                          {child.choresCount}
-                        </p>
-                        <ProgressBar progress={child.chores} />
-                      </div>
-                    </div>
+                    <div className="flex flex-col xl:flex-row xl:items-start gap-4 pl-8">
+  <div className="xl:w-60 mt-4 xl:mt-0 flex flex-col items-start">
+    <div className="flex gap-2">
+      <img src="/Wallet.svg" alt="Wallet" />
+      <p className="font-bold text-lg">Wallet</p>
+    </div>
+    <p className="text-neutral-black-ish font-bold text-4xl pt-3">
+      ${child.wallet}
+    </p>
+  </div>
+
+  <div className="w-full md:w-60 md:mt-0 flex flex-col items-start">
+    <div>
+      <div className="flex items-center gap-2">
+        <img src="/Piggy.svg" alt="Piggy Bank" />
+        <p className="font-bold text-lg">Goals</p>
+      </div>
+      <p className="text-neutral-black-ish font-bold text-4xl pt-3">
+        ${child.goalsAmount}
+      </p>
+    </div>
+    <div>
+      <p className="text-sm text-neutral-black-ish">
+        {child.goals} goals
+      </p>
+    </div>
+    <div className="mt-2 w-full">
+      <ProgressBar progress={child.goals} />
+    </div>
+  </div>
+
+  <div className="w-full md:w-60 mt-4 xl:mt-0 flex flex-col items-start">
+    <div className="flex items-center gap-2">
+      <img src="/CircleCheck.svg" alt="Chores" />
+      <p className="font-bold text-lg">Chores</p>
+    </div>
+    <p className="text-neutral-black-ish font-bold text-4xl pt-3">
+      {child.choresCount}
+    </p>
+    <div className="mt-7 w-full">
+      <ProgressBar progress={child.chores} />
+    </div>
+  </div>
+</div>
+
                   </div>
                 ))}
               </div>
