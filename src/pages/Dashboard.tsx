@@ -4,9 +4,39 @@ import { useNavigate, Link } from "react-router-dom";
 import ProgressBar from "./progressBar";
 import config from "../config/config";
 
+interface Chores {
+  amount: number,
+  name: string
+}
+
+interface Goals {
+  amount: number,
+  description: string,
+  id: number,
+  img: string,
+  link: string | null,
+  name: string,
+  paid: number
+}
+
+interface Wallet {
+  amount: number
+}
+
+interface ChildInfo {
+    child_id: number,
+    chores: Chores[],
+    goals: Goals[],
+    img: string,
+    parent_id: number,
+    role: string,
+    username: string,
+    wallet: Wallet
+}
+
 const Dashboard = () => {
   const [firstName, setFirstName] = useState<string>("");
-  const [childrenInfo, setChildrenInfo] = useState([])
+  const [childrenInfo, setChildrenInfo] = useState<ChildInfo[]>([])
   const navigate = useNavigate();
   const children = true;
   const url = config.backendURL;
@@ -40,6 +70,7 @@ const Dashboard = () => {
   }
   type Goal = {
     amount: number;
+    paid: number
   };
 
   const sumGoalTotalAmount = (goals: Goal[]) => {
