@@ -33,6 +33,7 @@ const ChildLogin = () => {
         const token = data.token; 
         localStorage.setItem("token", token); 
         sessionStorage.setItem("role", "child");
+        sessionStorage.setItem("childId", data.childId)
         navigate('/childProfile');
       }
     } catch (error) {

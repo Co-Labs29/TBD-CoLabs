@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import config from "../config/config";
-import { useNavigate } from "react-router-dom";
+
+import Sidebar from "../components/Sidebar";
 
 const ShowGoals = () => {
   const [data, setData] = useState([]);
@@ -10,7 +11,7 @@ const ShowGoals = () => {
   const id = sessionStorage.getItem("goalId");
   const token = localStorage.getItem("token");
   const childId = sessionStorage.getItem("selectedChildId");
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
 
   const getGoal = async () => {
     try {
@@ -35,9 +36,7 @@ const ShowGoals = () => {
     getGoal();
   }, [id, token, url]);
 
-  const handleBack = () => {
-    navigate("/ChildProfile");
-  };
+
 
   const handleAddMoneyClick = () => {
     setShowModal(true);
@@ -88,21 +87,15 @@ const ShowGoals = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <>
+    <div className="h-screen flex">
+    <Sidebar />
+    <div className="flex items-center pt-20 xl:ml-[20%]">
       {data.map((goal: any, index: number) => (
         <div
           key={index}
           className="border border-gray-200 w-[600px] h-[700px] p-4 flex flex-col items-center bg-[#ECFAEB]"
         >
-          <div className="self-start">
-            <button
-              type="button"
-              className="text-purple-800 border-2 border-purple-700 px-2 py-2 rounded-md"
-              onClick={handleBack}
-            >
-              Back
-            </button>
-          </div>
           <h3 className="text-3xl font-semibold m-5 mb-10">{goal.name}</h3>
           <span className="text-7xl pt-8 lg:pt-10 w-[300px] h-[150px] bg-white flex justify-center">
             {goal.img}
@@ -186,6 +179,8 @@ const ShowGoals = () => {
         </div>
       )}
     </div>
+    </div>
+    </>
   );
 };
 
