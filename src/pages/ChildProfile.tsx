@@ -92,13 +92,25 @@ const ChildProfile = () => {
     navigate("/ShowGoals");
   };
 
+  const parent = sessionStorage.getItem("role")
+
   return (
     <div className="h-screen flex">
       <Sidebar />
       <div className="flex flex-col mx-auto">
         <h1 className="flex mt-10 font-bold text-2xl lg:ml-2">Child Profile</h1>
         <div className="flex mt-10">
-          {childInfo.map((child: any, index: number) => (
+        {childInfo
+        .filter(child => {
+          const role = sessionStorage.getItem("role");
+          if (role && role.toLowerCase() === 'child') {
+            const childId = parseInt(sessionStorage.getItem("childId") || '', 10);
+            return child.child_id === childId;
+          } else {
+            return true; // Show all children for parent or when role is not defined
+          }
+        })
+        .map((child: any, index: number) => (
             <div key={index} className="ml-1" style={{ width: "120px" }}>
               <img
                 src={child.img}
