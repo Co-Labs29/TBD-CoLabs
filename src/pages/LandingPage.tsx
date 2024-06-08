@@ -55,7 +55,6 @@ const LandingPage = () => {
 </div>
 
     </div>
-    <Calender />
     </div>
   );
 };
