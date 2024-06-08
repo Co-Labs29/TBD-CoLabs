@@ -74,15 +74,27 @@ const ShowGoals = () => {
         body: JSON.stringify({ paid: amount, goal_id: parsedGoalId }), 
       });
       if (!response.ok) {
-        throw new Error("Could not transfer the money");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Could not transfer the money");
       }
   
       setShowModal(false);
       
-      // Refetch goal data after money transfer
+
       getGoal();
     } catch (error) {
       console.error("Error transferring money:", error);
+      let errorMessage = "An unknown error occurred";
+      if(error instanceof Error) {
+        errorMessage = error.message;
+      } else {
+        if (typeof error === "object" && error !== null && "message" in error) {
+          errorMessage =(error as {message: string}).message;
+        }else {
+          errorMessage = String(error);
+        }
+      }
+      alert(`Error: ${errorMessage}`)
     }
   };
 
@@ -138,7 +150,7 @@ const ShowGoals = () => {
               <p className="text-lg font-semibold pt-12">Description</p>
               <p className="pt-2 font-normal">{goal.description}</p>
               <p className="pt-5">Link</p>
-              <p className="pt-3">{goal.link}</p>
+              <p className="pt-3 font-normal">{goal.link}</p>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ function Goals() {
     name: '',
     amount: '',
     img: '',
-    itemLink: '',
+    link: '',
     description: ''
   });
 
@@ -49,7 +49,7 @@ function Goals() {
       name: '',
       amount: '',
       img: '',
-      itemLink: '',
+      link: '',
       description: ''
     });
     navigate('/childProfile');
@@ -100,8 +100,8 @@ function Goals() {
               id="itemLink"
               placeholder="Item Link"
               className="w-full px-3 py-2 mb-4 border rounded-lg"
-              value={goal.itemLink}
-              onChange={(e) => setGoal({ ...goal, itemLink: e.target.value })}
+              value={goal.link}
+              onChange={(e) => setGoal({ ...goal, link: e.target.value })}
             />
             <label htmlFor="description" className="block text-gray-700 font-bold mb-2">
               Description
