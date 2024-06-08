@@ -92,7 +92,7 @@ const ChildProfile = () => {
     navigate("/ShowGoals");
   };
 
-  const parent = sessionStorage.getItem("role")
+  
 
   return (
     <div className="h-screen flex">
