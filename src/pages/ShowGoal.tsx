@@ -36,9 +36,7 @@ const ShowGoals = () => {
     getGoal();
   }, [id, token, url]);
 
-  const handleBack = () => {
-    navigate("/ChildProfile");
-  };
+
 
   const handleAddMoneyClick = () => {
     setShowModal(true);
