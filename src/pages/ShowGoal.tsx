@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import config from "../config/config";
-import { useNavigate } from "react-router-dom";
+
 import Sidebar from "../components/Sidebar";
 
 const ShowGoals = () => {
