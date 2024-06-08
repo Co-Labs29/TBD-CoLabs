@@ -11,7 +11,7 @@ const ShowGoals = () => {
   const id = sessionStorage.getItem("goalId");
   const token = localStorage.getItem("token");
   const childId = sessionStorage.getItem("selectedChildId");
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
 
   const getGoal = async () => {
     try {
