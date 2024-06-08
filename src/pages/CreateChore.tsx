@@ -94,8 +94,8 @@ const CreateChore = () => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-[738px] flex justify-center mt-[80px] border">
-        <form className="w-[456px] mt-[80px]" onSubmit={e => handleCreateChore(e)}>
+      <div className=" flex justify-center mt-[80px] border">
+        <form className=" mt-[80px]" onSubmit={e => handleCreateChore(e)}>
           <label htmlFor="name" className="block mb-2">
             Chore name
           </label>
@@ -106,16 +106,6 @@ const CreateChore = () => {
             onChange={(e) => setChore({ ...chore, name: e.target.value })} // Update chore name
             className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-800"
           />
-          {/* <label htmlFor="frequency" className="block mb-2">
-            Chore frequency
-          </label>
-          <input
-            type="text"
-            id="frequency"
-            value={chore.frequency}
-            onChange={(e) => setChore({ ...chore, frequency: e.target.value })} // Update chore frequency
-            className="w-full px-3 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-800"
-          /> */}
           
           <label htmlFor="amount" className="block mb-2">
             Chore amount
