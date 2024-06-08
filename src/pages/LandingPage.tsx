@@ -1,5 +1,4 @@
 import Navbar from '../components/Navbar'
-import Calender from '../components/Calender/Calender';
 
 const LandingPage = () => {
   return (
@@ -55,7 +54,6 @@ const LandingPage = () => {
 </div>
 
     </div>
-    <Calender />
     </div>
   );
 };
