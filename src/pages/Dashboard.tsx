@@ -1,14 +1,50 @@
 import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
-import { useNavigate, Link } from "react-router-dom";
-import ProgressBar from "./progressBar";
+import { useNavigate } from "react-router-dom";
+// import ProgressBar from "./progressBar";
 import config from "../config/config";
+import SingleChildDashboard from "../components/SingleChildDashboard";
+
+import { ChildInfo } from "types/types";
+
+// interface Chores {
+//   amount: number,
+//   name: string
+// }
+
+// interface Goals {
+//   amount: number,
+//   description: string,
+//   id: number,
+//   img: string,
+//   link: string | null,
+//   name: string,
+//   paid: number
+// }
+
+// interface Wallet {
+//   amount: number
+// }
+
+// interface ChildInfo {
+//     child_id: number,
+//     chores: Chores[],
+//     goals: Goals[],
+//     img: string,
+//     parent_id: number,
+//     role: string,
+//     username: string,
+//     wallet: Wallet
+// }
 
 const Dashboard = () => {
-  const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [childrenInfo, setChildrenInfo] = useState<ChildInfo[]>([])
   const navigate = useNavigate();
-  const children = false;
+  const children = true;
   const url = config.backendURL;
+  console.log('childrenInfo :>> ', childrenInfo);
+
   const fetchParentInfo = async () => {
     try {
       const response = await fetch(
@@ -21,13 +57,34 @@ const Dashboard = () => {
     }
   };
 
+  const fetchChildrenInfo = async () => {
+    try {
+        const response = await fetch(`${url}/info`, {
+          headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`
+          }
+        })
+        const data = await response.json()
+        setChildrenInfo(data)
+    } catch (error) {
+        console.error(error);
+        
+    }
+  }
+ 
+
+
+
   useEffect(() => {
     fetchParentInfo();
+    fetchChildrenInfo()
   }, []);
 
   const handleSignUpClick = () => {
     navigate("/childSignUp");
   };
+
+
 
   return (
     <div className="h-screen flex lg:flex-row">
@@ -48,7 +105,7 @@ const Dashboard = () => {
                   <img
                     src="/Plus.svg"
                     alt="Plus sign"
-                    className="mr-2" // Added margin to the right
+                    className="mr-2" 
                     style={{ width: "20px", height: "20px" }}
                   />
                   Add Child
@@ -61,7 +118,7 @@ const Dashboard = () => {
                   <img
                     src="/Gift.svg"
                     alt="Gift sign"
-                    className="mr-2" // Added margin to the right
+                    className="mr-2" 
                     style={{ width: "20px", height: "20px" }}
                   />
                   Give Gift
@@ -106,7 +163,7 @@ const Dashboard = () => {
                     <img
                       src="/Plus.svg"
                       alt="Plus sign"
-                      className="mr-2" // Added margin to the right
+                      className="mr-2" 
                       style={{ width: "20px", height: "20px" }}
                     />
                     Add Child
@@ -119,7 +176,7 @@ const Dashboard = () => {
                     <img
                       src="/Gift.svg"
                       alt="Gift sign"
-                      className="mr-2" // Added margin to the right
+                      className="mr-2" 
                       style={{ width: "20px", height: "20px" }}
                     />
                     Give Gift
@@ -129,84 +186,8 @@ const Dashboard = () => {
                 Children Overview
               </p>
               <div className="mt-6 mx-8">
-                {[
-                  {
-                    name: "Billy",
-                    wallet: 80,
-                    goals: 2,
-                    goalsAmount: 10,
-                    chores: 100,
-                    choresCount: "100",
-                  },
-                  {
-                    name: "Timmy",
-                    wallet: 70,
-                    goals: 50,
-                    goalsAmount: 100,
-                    chores: 50,
-                    choresCount: "1/6",
-                  },
-                ].map((child) => (
-                  <div
-                    key={child.name}
-                    className="flex flex-col xl:items-start gap-4 mt-6"
-                  >
-                    <div className="flex items-center w-full xl:w-auto gap-2">
-                      <img
-                        src="/Avatar1.svg"
-                        alt="avatar"
-                        className="w-10 h-10"
-                      />
-                      <p className="text-lg xl:ml-2">{child.name}</p>
-                      <Link to="/childProfile" className="ml-4 underline">
-                        View Profile
-                      </Link>
-                    </div>
-                    <div className="flex flex-col xl:flex-row xl:items-start gap-4 xl:pl-8">
-                      <div className="xl:w-60 mt-4 xl:mt-0 flex flex-col items-start bg-lightest-green pb-[70px] pt-8 px-8">
-                        <div className="flex gap-2">
-                          <img src="/Wallet.svg" alt="Wallet" />
-                          <p className="font-bold text-lg">Wallet</p>
-                        </div>
-                        <p className="text-neutral-black-ish font-bold text-4xl pt-3">
-                          ${child.wallet}
-                        </p>
-                      </div>
-
-                      <div className=" xl:w-60 md:mt-0 flex flex-col items-start bg-lightest-green pb-[29px] pt-8 px-8">
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <img src="/Piggy.svg" alt="Piggy Bank" />
-                            <p className="font-bold text-lg">Goals</p>
-                          </div>
-                          <p className="text-neutral-black-ish font-bold text-4xl pt-3">
-                            ${child.goalsAmount}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-neutral-black-ish">
-                            {child.goals} goals
-                          </p>
-                        </div>
-                        <div className="mt-2 w-full">
-                          <ProgressBar progress={child.goals} />
-                        </div>
-                      </div>
-
-                      <div className="xl:w-60 mt-4 xl:mt-0 flex flex-col items-start bg-lightest-green pb-[29px] pt-8 px-8">
-                        <div className="flex items-center gap-2">
-                          <img src="/CircleCheck.svg" alt="Chores" />
-                          <p className="font-bold text-lg">Chores</p>
-                        </div>
-                        <p className="text-neutral-black-ish font-bold text-4xl pt-3">
-                          {child.choresCount}
-                        </p>
-                        <div className="mt-7 w-full">
-                          <ProgressBar progress={child.chores} />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                {childrenInfo.map((child) => (
+                  <SingleChildDashboard key={child.child_id} child={child}/>
                 ))}
               </div>
             </div>

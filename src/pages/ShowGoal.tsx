@@ -150,7 +150,7 @@ const ShowGoals = () => {
               <p className="text-lg font-semibold pt-12">Description</p>
               <p className="pt-2 font-normal">{goal.description}</p>
               <p className="pt-5">Link</p>
-              <p className="pt-3">{goal.link}</p>
+              <p className="pt-3 font-normal">{goal.link}</p>
             </div>
           </div>
         </div>
