@@ -11,6 +11,8 @@ module.exports = {
         'progress-bar': "#3DAB33",
         'lightish-purple': "#ECEBFA",
         'dark-purple': "#4233AB",
+        'border-gray': "#CDCAC9",
+        'lightest-green': "#ECFAEB"
       },
       screens: {
         'custom-1316': '1354px',
