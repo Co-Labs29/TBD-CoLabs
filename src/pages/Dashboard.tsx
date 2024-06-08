@@ -1,38 +1,41 @@
 import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
-import { useNavigate, Link } from "react-router-dom";
-import ProgressBar from "./progressBar";
+import { useNavigate } from "react-router-dom";
+// import ProgressBar from "./progressBar";
 import config from "../config/config";
+import SingleChildDashboard from "../components/SingleChildDashboard";
 
-interface Chores {
-  amount: number,
-  name: string
-}
+import { ChildInfo } from "types/types";
 
-interface Goals {
-  amount: number,
-  description: string,
-  id: number,
-  img: string,
-  link: string | null,
-  name: string,
-  paid: number
-}
+// interface Chores {
+//   amount: number,
+//   name: string
+// }
 
-interface Wallet {
-  amount: number
-}
+// interface Goals {
+//   amount: number,
+//   description: string,
+//   id: number,
+//   img: string,
+//   link: string | null,
+//   name: string,
+//   paid: number
+// }
 
-interface ChildInfo {
-    child_id: number,
-    chores: Chores[],
-    goals: Goals[],
-    img: string,
-    parent_id: number,
-    role: string,
-    username: string,
-    wallet: Wallet
-}
+// interface Wallet {
+//   amount: number
+// }
+
+// interface ChildInfo {
+//     child_id: number,
+//     chores: Chores[],
+//     goals: Goals[],
+//     img: string,
+//     parent_id: number,
+//     role: string,
+//     username: string,
+//     wallet: Wallet
+// }
 
 const Dashboard = () => {
   const [firstName, setFirstName] = useState<string>("");
@@ -68,27 +71,9 @@ const Dashboard = () => {
         
     }
   }
-  type Goal = {
-    amount: number;
-    paid: number
-  };
+ 
 
-  const sumGoalTotalAmount = (goals: Goal[]) => {
-    let sum = 0
-    for (const goal of goals) {
-      sum += goal.amount
-    }
-    return sum
-  }
 
-  const sumGoalTotalPaid = (goals: Goal[]) => {
-    let sum = 0
-    console.log('goals :>> ', goals);
-    for (const goal of goals) {
-      sum += goal.paid
-    }
-    return sum
-  }
 
   useEffect(() => {
     fetchParentInfo();
@@ -99,10 +84,7 @@ const Dashboard = () => {
     navigate("/childSignUp");
   };
 
-  const calculatePercentDone = (amount:number, target:number) => {
-    if (amount === 0) return 0
-    return Math.floor((target / amount) * 100)
-  }
+
 
   return (
     <div className="h-screen flex lg:flex-row">
@@ -205,66 +187,7 @@ const Dashboard = () => {
               </p>
               <div className="mt-6 mx-8">
                 {childrenInfo.map((child) => (
-                  <div
-                    key={child.child_id}
-                    className="flex flex-col xl:items-start gap-4 mt-6"
-                  >
-                    <div className="flex items-center w-full xl:w-auto gap-2">
-                      <img
-                        src="/Avatar1.svg"
-                        alt="avatar"
-                        className="w-10 h-10"
-                      />
-                      <p className="text-lg xl:ml-2">{child.username}</p>
-                      <Link to="/childProfile" className="ml-4 underline">
-                        View Profile
-                      </Link>
-                    </div>
-                    <div className="flex flex-col xl:flex-row xl:items-start gap-4 xl:pl-8">
-                      <div className="xl:w-60 mt-4 xl:mt-0 flex flex-col items-start bg-lightest-green pb-[70px] pt-8 px-8">
-                        <div className="flex gap-2">
-                          <img src="/Wallet.svg" alt="Wallet" />
-                          <p className="font-bold text-lg">Wallet</p>
-                        </div>
-                        <p className="text-neutral-black-ish font-bold text-4xl pt-3">
-                          ${child.wallet.amount}
-                        </p>
-                      </div>
-
-                      <div className=" xl:w-60 md:mt-0 flex flex-col items-start bg-lightest-green pb-[29px] pt-8 px-8">
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <img src="/Piggy.svg" alt="Piggy Bank" />
-                            <p className="font-bold text-lg">Goals</p>
-                          </div>
-                          <p className="text-neutral-black-ish font-bold text-4xl pt-3">
-                            ${sumGoalTotalAmount(child.goals)}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-neutral-black-ish">
-                            {child.goals.length} goals
-                          </p>
-                        </div>
-                        <div className="mt-2 w-full">
-                          <ProgressBar progress={calculatePercentDone(sumGoalTotalPaid(child.goals), sumGoalTotalAmount(child.goals))} />
-                        </div>
-                      </div>
-
-                      <div className="xl:w-60 mt-4 xl:mt-0 flex flex-col items-start bg-lightest-green pb-[29px] pt-8 px-8">
-                        <div className="flex items-center gap-2">
-                          <img src="/CircleCheck.svg" alt="Chores" />
-                          <p className="font-bold text-lg">Chores</p>
-                        </div>
-                        <p className="text-neutral-black-ish font-bold text-4xl pt-3">
-                          {/* {child.choresCount} */}
-                        </p>
-                        <div className="mt-7 w-full">
-                          {/* <ProgressBar progress={child.chores} /> */}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <SingleChildDashboard key={child.child_id} child={child}/>
                 ))}
               </div>
             </div>
