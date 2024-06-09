@@ -10,6 +10,8 @@ interface SingleChildDashboardProps {
 const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
   child,
 }) => {
+  
+
   const sumGoalTotalAmount = (goals: Goal[]) => {
     let sum = 0;
     for (const goal of goals) {

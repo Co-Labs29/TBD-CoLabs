@@ -1,4 +1,4 @@
-interface Chores {
+export interface Chores {
     amount: number,
     name: string
   }
@@ -23,6 +23,7 @@ interface Chores {
   };
   
  export interface ChildInfo {
+      id: number,
       child_id: number,
       chores: Chores[],
       goals: Goals[],

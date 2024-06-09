@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Sidebar from "./Sidebar";
 import config from "../config/config";
+import { formatDate } from "../helpers/helpers";
 
 interface Chores {
   amount: number;
@@ -37,23 +38,9 @@ const ParentAllChores = () => {
     }
   };
 
-
   useEffect(() => {
     fetchAllChores();
   }, []);
-
-  const formatDate = (date:string) => {
-    const newDate = new Date(date);
-
-    const options: Intl.DateTimeFormatOptions = {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    };
-    
-    const formattedDate = newDate.toLocaleDateString('en-US', options)
-    return formattedDate
-  }
 
   return (
     <div className="h-screen flex md:flex-row">
