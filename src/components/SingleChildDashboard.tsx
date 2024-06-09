@@ -15,7 +15,6 @@ const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
     for (const goal of goals) {
       sum += goal.amount;
     }
-    console.log("amount sum :>> ", sum);
     return sum;
   };
 
@@ -24,13 +23,10 @@ const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
     for (const goal of goals) {
       sum += goal.paid;
     }
-    console.log("paid sum :>> ", sum);
     return sum;
   };
 
   const calculatePercentDone = (amount: number, target: number) => {
-    console.log('amount :>> ', amount);
-    console.log('target :>> ', target);
     if (amount === 0) return 0;
 
     return Math.floor((target / amount) * 100);
@@ -41,7 +37,7 @@ const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
       className="flex flex-col xl:items-start gap-4 mt-6"
     >
       <div className="flex items-center w-full xl:w-auto gap-2">
-        <img src="/Avatar1.svg" alt="avatar" className="w-10 h-10" />
+        <img src={`/${child.img}`} alt="avatar" className="w-10 h-10" />
         <p className="text-lg xl:ml-2">{child.username}</p>
         <Link to="/childProfile" className="ml-4 underline">
           View Profile

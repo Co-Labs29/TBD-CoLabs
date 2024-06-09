@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string>(location.pathname);
-  const [role, setRole] = useState<string>('');
+  const [role, setRole] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     setActiveLink(location.pathname);
-    const userRole = sessionStorage.getItem('role');
-    setRole(userRole || '');
+    const userRole = sessionStorage.getItem("role");
+    setRole(userRole || "");
   }, [location.pathname]);
 
   const handleLinkClick = (path: string) => {
@@ -25,13 +25,11 @@ const Sidebar: React.FC = () => {
   return (
     <>
       <div className="md:hidden fixed top-0 right-4 left-0 flex justify-between items-center bg-white shadow-lg p-4 z-50">
-  <img src="/Logo.jpg" alt="logo" width={"100px"} />
-  <button onClick={toggleDrawer} className="p-2 rounded-md">
-    <img src="/icons8-menu.svg" alt="Menu" className="w-6 h-6" />
-  </button>
-</div>
-
-
+        <img src="/Logo.jpg" alt="logo" width={"100px"} />
+        <button onClick={toggleDrawer} className="p-2 rounded-md">
+          <img src="/icons8-menu.svg" alt="Menu" className="w-6 h-6" />
+        </button>
+      </div>
 
       {isOpen && (
         <div
@@ -42,11 +40,11 @@ const Sidebar: React.FC = () => {
 
       <aside
         className={`fixed inset-y-0 ${
-          isOpen ? 'left-0' : '-left-full'
+          isOpen ? "left-0" : "-left-full"
         } md:left-0 md:relative transform ${
-          isOpen ? 'translate-x-0' : '-translate-x-full'
+          isOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 transition-transform z-50 md:z-auto bg-white ${
-          isOpen ? 'w-full' : 'w-64'
+          isOpen ? "w-full" : "w-64"
         } md:w-64 h-full border-r-2 flex flex-col items-center justify-between font-semibold`}
       >
         {isOpen && (
@@ -61,17 +59,17 @@ const Sidebar: React.FC = () => {
           <div className="text-2xl font-bold ml-2">
             <img src="/Logo.jpg" alt="Logo" className="h-5 w-13" />
           </div>
-          {role === 'child' && (
+          {role === "child" && (
             <>
               <div className="h-10 w-full mt-14">
                 <Link
                   to="/childProfile"
                   className={
-                    activeLink === '/childProfile'
-                      ? 'flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full'
-                      : 'flex items-center p-2 w-full'
+                    activeLink === "/childProfile"
+                      ? "flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full"
+                      : "flex items-center p-2 w-full"
                   }
-                  onClick={() => handleLinkClick('/childProfile')}
+                  onClick={() => handleLinkClick("/childProfile")}
                 >
                   <img
                     className="w-7 h-7 mr-2"
@@ -85,11 +83,11 @@ const Sidebar: React.FC = () => {
                 <Link
                   to="/chores"
                   className={
-                    activeLink === '/chores'
-                      ? 'flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full'
-                      : 'flex items-center p-2 w-full'
+                    activeLink === "/chores"
+                      ? "flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full"
+                      : "flex items-center p-2 w-full"
                   }
-                  onClick={() => handleLinkClick('/chores')}
+                  onClick={() => handleLinkClick("/chores")}
                 >
                   <img
                     className="w-7 h-7 mr-2"
@@ -101,17 +99,17 @@ const Sidebar: React.FC = () => {
               </div>
             </>
           )}
-          {role === 'parent' && (
+          {role === "parent" && (
             <>
               <div className="h-10 w-full mt-14">
                 <Link
                   to="/dashboard"
                   className={
-                    activeLink === '/dashboard'
-                      ? 'flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full'
-                      : 'flex items-center p-2 w-full'
+                    activeLink === "/dashboard"
+                      ? "flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full"
+                      : "flex items-center p-2 w-full"
                   }
-                  onClick={() => handleLinkClick('/dashboard')}
+                  onClick={() => handleLinkClick("/dashboard")}
                 >
                   <img
                     className="w-7 h-7 mr-2"
@@ -125,11 +123,11 @@ const Sidebar: React.FC = () => {
                 <Link
                   to="/childProfile"
                   className={
-                    activeLink === '/childProfile'
-                      ? 'flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full'
-                      : 'flex items-center p-2 w-full'
+                    activeLink === "/childProfile"
+                      ? "flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full"
+                      : "flex items-center p-2 w-full"
                   }
-                  onClick={() => handleLinkClick('/childProfile')}
+                  onClick={() => handleLinkClick("/childProfile")}
                 >
                   <img
                     className="w-7 h-7 mr-2"
@@ -143,11 +141,11 @@ const Sidebar: React.FC = () => {
                 <Link
                   to="/chores"
                   className={
-                    activeLink === '/chores'
-                      ? 'flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full'
-                      : 'flex items-center p-2 w-full'
+                    activeLink === "/chores"
+                      ? "flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full"
+                      : "flex items-center p-2 w-full"
                   }
-                  onClick={() => handleLinkClick('/chores')}
+                  onClick={() => handleLinkClick("/chores")}
                 >
                   <img
                     className="w-7 h-7 mr-2"
@@ -161,11 +159,11 @@ const Sidebar: React.FC = () => {
                 <Link
                   to="/notifications"
                   className={
-                    activeLink === '/notifications'
-                      ? 'flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full'
-                      : 'flex items-center p-2 w-full'
+                    activeLink === "/notifications"
+                      ? "flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full"
+                      : "flex items-center p-2 w-full"
                   }
-                  onClick={() => handleLinkClick('/notifications')}
+                  onClick={() => handleLinkClick("/notifications")}
                 >
                   <img
                     className="w-7 h-7 mr-2"
@@ -179,11 +177,11 @@ const Sidebar: React.FC = () => {
                 <Link
                   to="/settings"
                   className={
-                    activeLink === '/settings'
-                      ? 'flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full'
-                      : 'flex items-center p-2 w-full'
+                    activeLink === "/settings"
+                      ? "flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full"
+                      : "flex items-center p-2 w-full"
                   }
-                  onClick={() => handleLinkClick('/settings')}
+                  onClick={() => handleLinkClick("/settings")}
                 >
                   <img
                     className="w-7 h-7 mr-2"
