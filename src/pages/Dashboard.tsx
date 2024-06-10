@@ -7,41 +7,10 @@ import SingleChildDashboard from "../components/SingleChildDashboard";
 
 import { ChildInfo } from "types/types";
 
-// interface Chores {
-//   amount: number,
-//   name: string
-// }
-
-// interface Goals {
-//   amount: number,
-//   description: string,
-//   id: number,
-//   img: string,
-//   link: string | null,
-//   name: string,
-//   paid: number
-// }
-
-// interface Wallet {
-//   amount: number
-// }
-
-// interface ChildInfo {
-//     child_id: number,
-//     chores: Chores[],
-//     goals: Goals[],
-//     img: string,
-//     parent_id: number,
-//     role: string,
-//     username: string,
-//     wallet: Wallet
-// }
-
 const Dashboard = () => {
   const [firstName, setFirstName] = useState<string>("");
   const [childrenInfo, setChildrenInfo] = useState<ChildInfo[]>([])
   const navigate = useNavigate();
-  const children = true;
   const url = config.backendURL;
   console.log('childrenInfo :>> ', childrenInfo);
 
@@ -74,7 +43,6 @@ const Dashboard = () => {
  
 
 
-
   useEffect(() => {
     fetchParentInfo();
     fetchChildrenInfo()
@@ -91,7 +59,7 @@ const Dashboard = () => {
       <Sidebar />
       <div className="flex flex-col flex-grow relative mt-4 lg:ml-64">
         <div className="flex justify-center">
-          {!children ? (
+          {!Array.isArray(childrenInfo) ? (
             <div className="flex-grow flex flex-col pt-[72px] text-center lg:text-start">
               <p className="text-neutral-black-ish font-bold text-2xl">
                 Hello, {firstName}
