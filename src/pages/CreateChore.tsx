@@ -65,12 +65,12 @@ const CreateChore = () => {
       return;
     }
     try {
-      const response = await fetch(`${url}/add_chore/${selectedChildId}/${sessionStorage.getItem("parentID")}`, {
+        await fetch(`${url}/add_chore/${selectedChildId}/${sessionStorage.getItem("parentID")}`, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(chore)
       })
-      console.log('response :>> ', await response.json());
+      navigate("/chores")
     } catch (error) {
         console.error(error);
         
