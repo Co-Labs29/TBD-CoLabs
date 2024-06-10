@@ -116,18 +116,19 @@ const Chores = () => {
             children.map((child) => (
               <div
                 key={child.id}
-                className={`flex gap-4 items-center cursor-pointer ${
-                  selectedChildId === child.id
-                    ? "border-[3px] border-dark-purple rounded-full"
-                    : ""
-                }`}
+                className={`flex flex-col gap-4 items-center cursor-pointer `}
                 onClick={() => handleChildClick(child.id)}
               >
                 <img
                   src={`/${child.img}`}
                   alt="child_img"
-                  className="w-16 h-16 object-cover rounded-full"
+                  className={`w-16 h-16 object-cover rounded-full ${
+                  selectedChildId === child.id
+                    ? "border-[3px] border-dark-purple rounded-full"
+                    : ""
+                }`}
                 />
+               <p>{child.username}</p> 
               </div>
             ))}
         </div>
