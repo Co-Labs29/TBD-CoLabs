@@ -7,6 +7,9 @@ const Sidebar: React.FC = () => {
   const [role, setRole] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const childIDs = sessionStorage.getItem("childIDs") || "[]";
+  const parsedChildIDs = JSON.parse(childIDs);
+
   useEffect(() => {
     setActiveLink(location.pathname);
     const userRole = sessionStorage.getItem("role");
@@ -61,7 +64,7 @@ const Sidebar: React.FC = () => {
           </div>
           {role === "child" && (
             <>
-              <div className="h-10 w-full mt-14">
+            {parsedChildIDs.length > 0 && <div className="h-10 w-full mt-14">
                 <Link
                   to="/childProfile"
                   className={
@@ -78,7 +81,8 @@ const Sidebar: React.FC = () => {
                   />
                   Child Profile
                 </Link>
-              </div>
+              </div>}
+              
               <div className="h-10 w-full mt-7">
                 <Link
                   to="/chores"
@@ -119,7 +123,7 @@ const Sidebar: React.FC = () => {
                   Dashboard
                 </Link>
               </div>
-              <div className="h-10 w-full mt-7">
+              {parsedChildIDs.length > 0 && <div className="h-10 w-full mt-7">
                 <Link
                   to="/childProfile"
                   className={
@@ -136,7 +140,8 @@ const Sidebar: React.FC = () => {
                   />
                   Child Profile
                 </Link>
-              </div>
+              </div>}
+              
               <div className="h-10 w-full mt-7">
                 <Link
                   to="/chores"
