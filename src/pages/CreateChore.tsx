@@ -70,7 +70,7 @@ const CreateChore = () => {
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(chore)
       })
-      console.log('response :>> ', await response.json());
+      navigate("/chores")
     } catch (error) {
         console.error(error);
         

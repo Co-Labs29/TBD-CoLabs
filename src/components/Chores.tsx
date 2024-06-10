@@ -97,7 +97,7 @@ const Chores = () => {
             Add Chore
           </Link>
           <Link
-            to="/create_chore"
+            to="/parent_all_chores"
             type="button"
             onClick={() => navigate("/parent_all_chores")}
             className="text-purple-800 border-2 border-purple-700 rounded-xl px-6 md:px-10 font-semibold py-2 mt-4 flex items-center justify-center"
@@ -118,7 +118,7 @@ const Chores = () => {
                 key={child.id}
                 className={`flex gap-4 items-center cursor-pointer ${
                   selectedChildId === child.id
-                    ? "border-2 border-dark-purple rounded-full"
+                    ? "border-[3px] border-dark-purple rounded-full"
                     : ""
                 }`}
                 onClick={() => handleChildClick(child.id)}
