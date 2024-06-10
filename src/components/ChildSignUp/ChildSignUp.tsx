@@ -37,7 +37,7 @@ const ChildSignUp = () => {
         parent_id: childUser.parent_id,
         img: childUser.selectedIcon, 
       };
-
+  
       try {
         const response = await fetch(`${url}/child_signup`, {
           method: "POST",
@@ -48,8 +48,10 @@ const ChildSignUp = () => {
           body: JSON.stringify(formData),
         });
         if (!response.ok) {
-          const errorData = await response.json();
-          setError(errorData.message);
+          console.log("in no ok statement")
+          setError("Username already exists. Please choose a different username.");
+          window.alert("Username already exist. Please choose a different username")
+
           return;
         } else {
           const data = await response.json();
@@ -60,7 +62,7 @@ const ChildSignUp = () => {
         }
       } catch (error) {
         console.error(error);
-        setError("Error signing up.. Please try again");
+        setError("Error signing up. Please try again.");
       }
     } else {
       setError("Passwords do not match!");
