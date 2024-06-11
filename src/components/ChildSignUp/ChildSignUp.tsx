@@ -11,7 +11,7 @@ const ChildSignUp = () => {
     password: "",
     parent_id: parent_id,
     role: "Child",
-    selectedIcon: "Avatar1.svg", 
+    selectedIcon: "Avatar1.svg",
     availableIcons: [
       "Avatar1.svg",
       "Avatar2.svg",
@@ -25,7 +25,6 @@ const ChildSignUp = () => {
   });
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [showMessage, setShowMessage] = useState(false);
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,7 +34,7 @@ const ChildSignUp = () => {
         password: childUser.password,
         role: childUser.role,
         parent_id: childUser.parent_id,
-        img: childUser.selectedIcon, 
+        img: childUser.selectedIcon,
       };
 
       try {
@@ -48,19 +47,18 @@ const ChildSignUp = () => {
           body: JSON.stringify(formData),
         });
         if (!response.ok) {
-          const errorData = await response.json();
-          setError(errorData.message);
+          console.log("in no ok statement")
+          setError("Username already exists. Please choose a different username.");
           return;
         } else {
           const data = await response.json();
           const token = data.token;
           localStorage.setItem("token", token);
-          setShowMessage(true);
           navigate('/dashboard');
         }
       } catch (error) {
         console.error(error);
-        setError("Error signing up.. Please try again");
+        setError("Error signing up. Please try again.");
       }
     } else {
       setError("Passwords do not match!");
@@ -87,7 +85,6 @@ const ChildSignUp = () => {
     });
     setConfirmPassword("");
     setError("");
-    setShowMessage(false);
     navigate('/dashboard')
   };
 
@@ -144,7 +141,7 @@ const ChildSignUp = () => {
               className="w-full px-3 py-2 mb-4 border rounded-lg"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
-           
+
             <label className="text-gray-700 font-bold mb-2 flex justify-center">
               Choose Icon
             </label>
@@ -152,7 +149,7 @@ const ChildSignUp = () => {
               {childUser.availableIcons.map((icon, index) => (
                 <img
                   key={index}
-                  src={`${icon}`} 
+                  src={`${icon}`}
                   alt={`Icon ${index + 1}`}
                   className={
                     childUser.selectedIcon === icon
@@ -179,7 +176,7 @@ const ChildSignUp = () => {
               </button>
             </div>
           </form>
-          {showMessage && <div className="mt-4 text-red-600">{error}</div>}
+          {error && <div className="flex justify-center mt-5 text-red-600">{error}</div>}
         </div>
       </div>
     </>
@@ -187,3 +184,4 @@ const ChildSignUp = () => {
 };
 
 export default ChildSignUp;
+

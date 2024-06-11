@@ -1,8 +1,6 @@
-import { useState } from "react";
-import Navbar from "../Navbar";
-import config from "../../config/config";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import config from "../../config/config";
 
 const ParentSignup = () => {
   const url = config.backendURL;
@@ -12,12 +10,17 @@ const ParentSignup = () => {
     password: "",
     role: "Parent"
   });
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [showMessage, setShowMessage] = useState(false);
   const navigate = useNavigate();
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (parentUser.password !== confirmPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+
     try {
       const response = await fetch(`${url}/parent_signup`, {
         method: "POST",
@@ -28,74 +31,99 @@ const ParentSignup = () => {
       if (!response.ok) {
         const errorData = await response.json();
         setError(errorData.error || "Error signing up. Please try again.");
-        setShowMessage(true);
       } else {
         const data = await response.json();
         const token = data.token; 
         localStorage.setItem("token", token); 
-        setShowMessage(true);
         navigate("/login");
       }
     } catch (error) {
       console.error(error);
       setError("Error signing up. Please try again.");
-      setShowMessage(true);
     }
+  };
+
+  const handleCancel = () => {
+    setParentUser({
+      first_name: "",
+      email: "",
+      password: "",
+      role: "Parent"
+    });
+    setConfirmPassword("");
+    setError("");
+    navigate("/login");
   };
 
   return (
     <>
-      <Navbar />
-      <div className="flex items-center justify-center min-h-screen" id="signup">
-        <form className="bg-white p-8 rounded-lg shadow-md border-2 border-gray-400 w-full max-w-lg" onSubmit={handleSignUp}>
-          <h1 className="text-center font-bold text-xl mb-7">Sign up</h1>
-          <input
-            type="text"
-            value={parentUser.first_name}
-            onChange={(e) => setParentUser({ ...parentUser, first_name: e.target.value })}
-            placeholder="First Name"
-            required
-            className="w-full mb-4 border border-gray-300 rounded px-3 py-2"
-          />
-         
-          <input
-            type="email"
-            value={parentUser.email}
-            onChange={(e) => setParentUser({ ...parentUser, email: e.target.value })}
-            placeholder="Email"
-            required
-            className="w-full mb-4 border border-gray-300 rounded px-3 py-2"
-          />
-          <input
-            type="password"
-            value={parentUser.password}
-            onChange={(e) => setParentUser({ ...parentUser, password: e.target.value })}
-            placeholder="Password"
-            required
-            className="w-full mb-4 border border-gray-300 rounded px-3 py-2"
-          />
-          <input
-            type="password"
-         
-            placeholder="Confirm Password"
-            required
-            className="w-full mb-4 border border-gray-300 rounded px-3 py-2"
-          />
-         
-          <button
-            type="submit"
-            className="text-purple-800 border-2 border-purple-700 rounded-xl px-10 py-2 mt-4 md:mt-0 md:ml-24"
-            style={{ marginLeft: "auto", marginRight: "auto", display: "block" }}
-          >
-            Signup
-          </button>
-        </form>
-
-        {showMessage && <div className="mt-4 text-red-600">{error}</div>}
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="bg-white p-8 rounded-lg shadow-md border-2 border-gray-400 w-full max-w-lg">
+          <h1 className="text-center font-bold text-xl mb-7">Parent Signup</h1>
+          <form onSubmit={(e) => handleSignUp(e)}>
+            <label htmlFor="firstName" className="block text-gray-700 font-bold mb-2">
+              First Name
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              placeholder="First Name"
+              className="w-full px-3 py-2 mb-4 border rounded-lg"
+              onChange={(e) => setParentUser({ ...parentUser, first_name: e.target.value })}
+            />
+            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              className="w-full px-3 py-2 mb-4 border rounded-lg"
+              onChange={(e) => setParentUser({ ...parentUser, email: e.target.value })}
+            />
+            <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              className="w-full px-3 py-2 mb-4 border rounded-lg"
+              onChange={(e) => setParentUser({ ...parentUser, password: e.target.value })}
+            />
+            <label htmlFor="confirmPassword" className="block text-gray-700 font-bold mb-2">
+              Confirm Password
+            </label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+              className="w-full px-3 py-2 mb-4 border rounded-lg"
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <div className="flex justify-between">
+              <button
+                type="button"
+                className="text-purple-800 border-2 border-purple-700 rounded-xl px-6 py-2 mt-4"
+                onClick={handleCancel}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="text-purple-800 border-2 border-purple-700 rounded-xl px-10 py-2 mt-4"
+              >
+                Sign Up
+              </button>
+            </div>
+          </form>
+          {error && <div className="mt-4 text-red-600 flex justify-center">{error}</div>}
+        </div>
       </div>
     </>
   );
 };
 
 export default ParentSignup;
+
 
