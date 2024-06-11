@@ -30,6 +30,7 @@ const ChildProfile = () => {
   const [selectedChild, setSelectedChild] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  console.log(error)
 
 
   const url = config.backendURL;
