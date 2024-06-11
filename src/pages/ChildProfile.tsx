@@ -57,7 +57,7 @@ const ChildProfile = () => {
         const data: ChildInfo[] = await response.json();
         setChildInfo(data);
         console.log(data)
-      } catch (error) {
+        } catch (error) {
         setError(error as Error);
       } finally {
         setLoading(false);
@@ -71,9 +71,10 @@ const ChildProfile = () => {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {(error as Error).message}</div>;
+  const handleSignUpClick = () => {
+    navigate('/ChildSignUp')
   }
+
 
   const handleChildSelect = (child: any) => {
     setSelectedChild(child);
@@ -97,6 +98,24 @@ const ChildProfile = () => {
   return (
     <div className="h-screen flex">
       <Sidebar />
+      {childInfo.length === 0 ? (
+        <div className="text-center flex flex-col justify-center mx-auto">
+          <p>No child found.</p>
+          <button
+                  type="button"
+                  onClick={handleSignUpClick}
+                  className="flex  justify-center text-purple-800 border-2 border-purple-700 font-semibold rounded-xl px-10 py-2 mt-4"
+                >
+                  <img
+                    src="/Plus.svg"
+                    alt="Plus sign"
+                    className="mr-2" 
+                    style={{ width: "20px", height: "20px" }}
+                  />
+                  Add Child
+                </button>
+        </div>
+      ) : (
       <div className="flex flex-col mx-auto">
         <h1 className="flex mt-10 font-bold text-2xl lg:ml-2">Child Profile</h1>
         <div className="flex mt-10">
@@ -107,7 +126,7 @@ const ChildProfile = () => {
             const childId = parseInt(sessionStorage.getItem("childId") || '', 10);
             return child.child_id === childId;
           } else {
-            return true; // Show all children for parent or when role is not defined
+            return true; 
           }
         })
         .map((child: any, index: number) => (
@@ -259,6 +278,7 @@ const ChildProfile = () => {
           </div>
         )}
       </div>
+      )}
     </div>
   );
 };
