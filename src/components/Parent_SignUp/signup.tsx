@@ -89,9 +89,9 @@ const ParentSignup = () => {
           >
             Signup
           </button>
+        {showMessage && <div className="mt-5 ml-36 text-red-600">{error}</div>}
         </form>
 
-        {showMessage && <div className="mt-4 text-red-600">{error}</div>}
       </div>
     </>
   );
