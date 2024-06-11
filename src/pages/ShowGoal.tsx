@@ -117,9 +117,9 @@ const ShowGoals = () => {
 
   return (
     <>
-      <div className="h-screen flex">
+      <div className="h-screen flex ">
         <Sidebar />
-        <div className="flex items-center pt-20 xl:ml-[20%]">
+        <div className="flex items-center justify-center w-full pt-52 lg:pt-40 ml-10">
           {data.map((goal: any, index: number) => (
             <div
               key={index}
