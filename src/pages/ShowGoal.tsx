@@ -8,6 +8,7 @@ const ShowGoals = () => {
   const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [amount, setAmount] = useState<number>(0);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const url = config.backendURL;
   const id = sessionStorage.getItem("goalId");
   const token = localStorage.getItem("token");
@@ -71,14 +72,14 @@ const ShowGoals = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ paid: amount, goal_id: parsedGoalId }),
-      });
+        });
+      setShowModal(false);
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.error || "Could not transfer the money");
       }
 
-      setShowModal(false);
-
+      setErrorMessage(null)
       getGoal();
     } catch (error) {
       console.error("Error transferring money:", error);
@@ -92,9 +93,11 @@ const ShowGoals = () => {
           errorMessage = String(error);
         }
       }
-      alert(`Error: ${errorMessage}`);
+      setErrorMessage(errorMessage);
     }
   };
+
+
   const navigate = useNavigate()
   const deleteGoal = () => {
     const fetchDelete = async () => {
@@ -176,6 +179,9 @@ const ShowGoals = () => {
                   <p className="pt-5">Link</p>
                   <p className="pt-3 font-normal">{goal.link}</p>
                 </div>
+                {errorMessage && (
+                  <div className="mt-8 ml-16 text-red-600"> {`*${errorMessage}*`}</div>
+                )}
               </div>
             </div>
           ))}
