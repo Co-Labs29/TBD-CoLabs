@@ -4,7 +4,7 @@ import Login from "../pages/Login";
 import LandingPage from "../pages/LandingPage";
 import ChildSignUp from "../components/ChildSignUp/ChildSignUp";
 import ChildProfile from "../pages/ChildProfile";
-import Chores from "../components/Chores";
+import Chores from "../Chores/Chores";
 import CreateChore from "../pages/CreateChore";
 
 import Goals from "../components/Goals/Goals";

@@ -1,0 +1,24 @@
+.custom-checkbox {
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    background-color: #e2e8f0; 
+    border: 2px solid #888888; 
+    border-radius: 4px; 
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .custom-checkbox:checked {
+    background-color: #4233AB; 
+  }
+  
+  .custom-checkbox:checked::before {
+    content: '✔'; /* Checkmark */
+    color: white;
+    font-size: 16px;
+  }
+  
