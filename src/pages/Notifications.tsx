@@ -19,14 +19,19 @@ const NotificationsPage = () => {
         const token = localStorage.getItem("token");
         const parentId = sessionStorage.getItem("parentID");
         if (!token || !parentId) {
-          throw new Error("You must be logged in and have a parent ID to view notifications");
+          throw new Error(
+            "You must be logged in and have a parent ID to view notifications"
+          );
         }
-        const response = await fetch(`${config.backendURL}/notifications/${parentId}`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          `${config.backendURL}/notifications/${parentId}`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch notifications");
         }
@@ -51,14 +56,30 @@ const NotificationsPage = () => {
   }
 
   return (
-    <div className="h-screen flex">
+    <div className="flex items-center h-screen">
       <Sidebar />
-      <div className="flex flex-col mx-auto">
-        <h1 className="mt-10 font-bold text-2xl">Notifications</h1>
-        <div className="flex flex-col mt-4">
+      <div className="w-96 p-4 border border-gray-200 rounded-lg mx-auto overflow-y-auto scrollbar-thin">
+        <h3 className="flex items-center justify-center">
+          <span className="font-bold text-lg">Notifications</span>
+        </h3>
+
+        <div className="mt-4" style={{ maxHeight: "300px" }}>
           {notifications.map((notification, index) => (
-            <div key={index} className="notification">
-              <p>{notification.child_name} completed {notification.type} {notification.name}</p>
+            <div
+              key={index}
+              className="flex justify-center"
+              style={{
+                backgroundColor: "#ECFAEB",
+                padding: "10px",
+                borderRadius: "8px",
+                height: "100px",
+                marginBottom: "20px",
+              }}
+            >
+              <p className="text-lg font-semibold mt-5">
+                {notification.child_name} completed {notification.type}{" "}
+                {notification.name}
+              </p>
             </div>
           ))}
         </div>
