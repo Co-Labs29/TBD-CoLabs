@@ -1,6 +1,8 @@
 export interface Chores {
     amount: number,
-    name: string
+    name: string,
+    id: number,
+    status: string
   }
   
   interface Goals {
@@ -13,7 +15,7 @@ export interface Chores {
     paid: number
   }
   
-  interface Wallet {
+  export interface Wallet {
     amount: number
   }
 
@@ -27,9 +29,9 @@ export interface Chores {
       child_id: number,
       chores: Chores[],
       goals: Goals[],
-      img: string,
+      img: string | null,
       parent_id: number,
       role: string,
-      username: string,
+      username: string | null,
       wallet: Wallet
   }
