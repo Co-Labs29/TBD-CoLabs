@@ -106,6 +106,19 @@ const Sidebar: React.FC = () => {
                   Chores
                 </Link>
               </div>
+              <div className="h-10 w-full mt-7">
+                <button
+                  className="flex items-center p-2 w-full"
+                  onClick={handleLogout}
+                >
+                  <img
+                    className="w-7 h-7 mr-2"
+                    src="/logout.svg"
+                    alt="logout Icon"
+                  />
+                  Log out
+                </button>
+              </div>
             </>
           )}
           {role === "parent" && (
@@ -184,7 +197,7 @@ const Sidebar: React.FC = () => {
               </div>
               <div className="h-10 w-full mt-7">
                 <button
-                  className="flex items-center p-2 w-full bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg"
+                  className="flex items-center p-2 w-full"
                   onClick={handleLogout}
                 >
                   <img
