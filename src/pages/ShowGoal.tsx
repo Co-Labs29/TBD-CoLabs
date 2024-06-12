@@ -13,7 +13,8 @@ const ShowGoals = () => {
   const id = sessionStorage.getItem("goalId");
   const token = localStorage.getItem("token");
   const childId = sessionStorage.getItem("selectedChildId");
-  //   const navigate = useNavigate();
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
+  const [completeStatus, setCompleteStatus] = useState(false);
 
   const getGoal = async () => {
     try {
@@ -97,6 +98,42 @@ const ShowGoals = () => {
     }
   };
 
+  const handleCompleteGoal = async () => {
+    try {
+      const response = await fetch(`${url}/Complete/${id}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ complete: true }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to complete goal");
+      }
+      setShowCompletionModal(false);
+      getGoal();
+      console.log(completeStatus)
+    } catch (error) {
+      console.error("Error completing goal:", error);
+      let errorMessage = "An unknown error occurred";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else {
+        if (
+          typeof error === "object" &&
+          error !== null &&
+          "message" in error
+        ) {
+          errorMessage = (error as { message: string }).message;
+        } else {
+          errorMessage = String(error);
+        }
+      }
+      setErrorMessage(errorMessage);
+    }
+  };
+
 
   const navigate = useNavigate()
   const deleteGoal = () => {
@@ -126,16 +163,21 @@ const ShowGoals = () => {
           {data.map((goal: any, index: number) => (
             <div
               key={index}
-              className="border border-gray-200 w-[600px] h-[700px] p-4 flex flex-col items-center bg-[#ECFAEB]">
-                <div className="flex w-full justify-evenly ml-32">
-              <h3 className="text-3xl font-semibold m-5 mb-10 flex">{goal.name}</h3>
-              <div className="w-[20px] h-[20px] mt-7 flex">
-                <img src="/icons8-trash.svg" alt="Bin" 
-                className="cursor-pointer"
-                onClick={deleteGoal}
-                />
-              </div>
+              className="border border-gray-200 w-[600px] h-[700px] p-4 flex flex-col items-center bg-[#ECFAEB]"
+            >
+              <div className="flex w-full justify-evenly ml-32">
+                <h3 className="text-3xl font-semibold m-5 mb-10 flex">
+                  {goal.name}
+                </h3>
+                <div className="w-[20px] h-[20px] mt-7 flex">
+                  <img
+                    src="/icons8-trash.svg"
+                    alt="Bin"
+                    className="cursor-pointer"
+                    onClick={deleteGoal}
+                  />
                 </div>
+              </div>
               <span className="text-7xl pt-8 lg:pt-10 w-[300px] h-[150px] bg-white flex justify-center">
                 {goal.img}
               </span>
@@ -180,8 +222,17 @@ const ShowGoals = () => {
                   <p className="pt-3 font-normal">{goal.link}</p>
                 </div>
                 {errorMessage && (
-                  <div className="mt-8 ml-16 text-red-600"> {`*${errorMessage}*`}</div>
+                  <div className="mt-8 ml-16 text-red-600">
+                    {" "}
+                    *{errorMessage}*
+                  </div>
                 )}
+                <button
+                  className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+                  onClick={() => setShowCompletionModal(true)}
+                >
+                  Complete
+                </button>
               </div>
             </div>
           ))}
@@ -220,10 +271,41 @@ const ShowGoals = () => {
               </div>
             </div>
           )}
+          {showCompletionModal && (
+            <div className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+              <div className="bg-white p-4 rounded-md w-[450px] h-[340px] relative">
+                <button
+                  type="button"
+                  className="text-gray-900 hover:text-gray-500 font-semibold absolute right-16 top-12 text-2xl "
+                  onClick={() => setShowCompletionModal(false)}
+                >
+                  X
+                </button>
+                <h2 className="text-2xl ml-3 font-semibold mb-4 mt-[33%]">
+                  Is the goal complete?
+                </h2>
+                <select
+                  className="border border-gray-300 rounded-md px-3 py-2 w-[90%] ml-3"
+                  onChange={(e) => setCompleteStatus(e.target.value === 'yes')}
+                >
+                  <option value="yes">Yes</option>
+                </select>
+                <button
+                  type="button"
+                  className="text-purple-600 border-2 border-purple-600 text-xl px-4 py-2 rounded-md absolute bottom-9 left-7 w-[84%]"
+                  onClick={handleCompleteGoal}
+                >
+                  Complete Goal
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
   );
+  
+  
 };
 
 export default ShowGoals;

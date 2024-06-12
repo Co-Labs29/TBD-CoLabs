@@ -10,6 +10,7 @@ import CreateChore from "../pages/CreateChore";
 import Goals from "../components/Goals/Goals";
 import ParentAllChores from "../components/ParentAllChores";
 import ShowGoals from "../pages/ShowGoal";
+import Notifications from "../pages/Notifications";
 
 interface RouteType {
     path: string,
@@ -75,6 +76,12 @@ const routes: RouteType[] = [
         path: '/ShowGoals',
         component: ShowGoals,
         name: "show all Goals"
+    },
+
+    {
+        path: '/Notifications',
+        component: Notifications,
+        name: "Notifications"
     }
 ];
 
