@@ -6,6 +6,7 @@ interface Notification {
   child_name: string;
   type: string;
   name: string;
+  child_img: string;
 }
 
 const NotificationsPage = () => {
@@ -56,9 +57,9 @@ const NotificationsPage = () => {
   }
 
   return (
-    <div className="flex items-center h-screen">
+    <div className="flex h-screen">
       <Sidebar />
-      <div className="w-96 p-4 border border-gray-200 rounded-lg mx-auto overflow-y-auto scrollbar-thin">
+      <div className="w-96 p-4  rounded-lg mx-auto pt-24 ">
         <h3 className="flex items-center justify-center">
           <span className="font-bold text-lg">Notifications</span>
         </h3>
@@ -67,7 +68,7 @@ const NotificationsPage = () => {
           {notifications.map((notification, index) => (
             <div
               key={index}
-              className="flex justify-center"
+              className="flex justify-center text-center"
               style={{
                 backgroundColor: "#ECFAEB",
                 padding: "10px",
@@ -76,10 +77,18 @@ const NotificationsPage = () => {
                 marginBottom: "20px",
               }}
             >
+                <div className="flex">
+                    <img
+                     src={notification.child_img}
+                     alt="avatar" 
+                     className="w-10 h-20"
+                     />
+                    
               <p className="text-lg font-semibold mt-5">
                 {notification.child_name} completed {notification.type}{" "}
                 {notification.name}
               </p>
+              </div>
             </div>
           ))}
         </div>
