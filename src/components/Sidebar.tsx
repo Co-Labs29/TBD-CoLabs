@@ -33,7 +33,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <>
-      <div className="md:hidden fixed top-0 right-4 left-0 flex justify-between items-center bg-white shadow-lg p-4 z-50">
+      <div className="md:hidden fixed top-0 right-0 left-0 flex justify-between items-center bg-white shadow-lg p-4 z-50">
         <img src="/Logo.jpg" alt="logo" width={"100px"} />
         <button onClick={toggleDrawer} className="p-2 rounded-md">
           <img src="/icons8-menu.svg" alt="Menu" className="w-6 h-6" />
