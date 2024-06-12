@@ -2,7 +2,8 @@ export interface Chores {
     amount: number,
     name: string,
     id: number,
-    status: string
+    status: string,
+    child_id: number
   }
   
   interface Goals {
