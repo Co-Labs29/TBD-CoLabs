@@ -166,7 +166,7 @@ const Sidebar: React.FC = () => {
                       ? "flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full"
                       : "flex items-center p-2 w-full"
                   }
-                  onClick={() => handleLinkClick("/notifications")}
+                  onClick={() => handleLinkClick("/Notifications")}
                 >
                   <img
                     className="w-7 h-7 mr-2"
