@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar: React.FC = () => {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState<string>(location.pathname);
   const [role, setRole] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  // const childIDs = sessionStorage.getItem("childIDs") || "[]";
-  // const parsedChildIDs = JSON.parse(childIDs);
 
   useEffect(() => {
     setActiveLink(location.pathname);
@@ -23,6 +20,15 @@ const Sidebar: React.FC = () => {
 
   const toggleDrawer = () => {
     setIsOpen(!isOpen);
+  };
+
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    // Clear session and local storage
+    sessionStorage.clear();
+    localStorage.clear();
+    // Redirect to the login page or any appropriate page
+    navigate("/");
   };
 
   return (
@@ -177,22 +183,17 @@ const Sidebar: React.FC = () => {
                 </Link>
               </div>
               <div className="h-10 w-full mt-7">
-                <Link
-                  to="/settings"
-                  className={
-                    activeLink === "/settings"
-                      ? "flex items-center bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg p-2 w-full"
-                      : "flex items-center p-2 w-full"
-                  }
-                  onClick={() => handleLinkClick("/settings")}
+                <button
+                  className="flex items-center p-2 w-full bg-[#ECEBFA] text-purple-800 border font-bold border-purple-700 rounded-lg"
+                  onClick={handleLogout}
                 >
                   <img
                     className="w-7 h-7 mr-2"
-                    src="/Settings.jpg"
-                    alt="settings Icon"
+                    src="/logout.svg"
+                    alt="logout Icon"
                   />
-                  Settings
-                </Link>
+                  Log out
+                </button>
               </div>
             </>
           )}
@@ -203,4 +204,3 @@ const Sidebar: React.FC = () => {
 };
 
 export default Sidebar;
-
