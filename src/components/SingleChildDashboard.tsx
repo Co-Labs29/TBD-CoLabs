@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProgressBar from "../pages/progressBar";
 import { Goal } from "types/types";
-import { ChildInfo } from "types/types";
+import { ChildInfo, Chores } from "types/types";
 
 interface SingleChildDashboardProps {
   child: ChildInfo;
@@ -10,7 +10,8 @@ interface SingleChildDashboardProps {
 const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
   child,
 }) => {
-  
+
+  console.log('child :>> ', child);
 
   const sumGoalTotalAmount = (goals: Goal[]) => {
     let sum = 0;
@@ -27,6 +28,20 @@ const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
     }
     return sum;
   };
+
+  
+
+  const calculateChorePrgression = (chores:Chores[]) => {
+      let choresFinished = 0
+      for (const chore of chores) {
+        console.log('choreeeee :>> ', chore);
+        if (chore.status === "completed") {
+          choresFinished ++
+        }
+      }
+      console.log('choresFinished :>> ', choresFinished);
+      return choresFinished
+  }
 
   const calculatePercentDone = (amount: number, target: number) => {
     if (amount === 0) return 0;
@@ -86,9 +101,9 @@ const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
             <img src="/CircleCheck.svg" alt="Chores" />
             <p className="font-bold text-lg">Chores</p>
           </div>
-          <p className="text-neutral-black-ish font-bold text-4xl pt-3">$100</p>
+          <p className="text-neutral-black-ish font-bold text-4xl pt-3">{calculateChorePrgression(child.chores)}/{child.chores.length}</p>
           <div className="mt-7 w-full">
-            <ProgressBar progress={50} />
+            <ProgressBar progress={(calculateChorePrgression(child.chores) / child.chores.length) * 100} />
           </div>
         </div>
       </div>
