@@ -34,7 +34,7 @@ const Navbar = () => {
           )}
         </div>
         <div className='hidden md:block w-full md:w-auto md:order-2'>
-          <ul className='flex font-semibold justify-between text-2xl'>
+          <ul className='flex font-semibold justify-between text-2xl pt-3'>
             <li className='md:px-4 md:py-2 text-purple-800 mx-2 md:mx-4'>
               <Link to="/Login" className='nav-item'>Log in</Link>
             </li>
