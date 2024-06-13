@@ -5,6 +5,8 @@ export interface Chores {
     status: string,
     child_id: number
   }
+
+  export type ChoresArray = Chores[];
   
   interface Goals {
     amount: number,

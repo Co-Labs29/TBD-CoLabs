@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProgressBar from "../pages/progressBar";
 import { Goal } from "types/types";
-import { ChildInfo } from "types/types";
+import { ChildInfo, Chores as ChoreInterface, ChoresArray } from "types/types";
 
 interface SingleChildDashboardProps {
   child: ChildInfo;
@@ -10,6 +10,16 @@ interface SingleChildDashboardProps {
 const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
   child,
 }) => {
+
+  const choresFinished = (chores:ChoresArray): number => {
+      let sum:number = 0;
+      for (const chore of chores) {
+        if (chore.status === "completed") {
+            sum ++
+        }
+      }
+      return sum
+  }
   
 
   const sumGoalTotalAmount = (goals: Goal[]) => {
@@ -86,9 +96,9 @@ const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
             <img src="/CircleCheck.svg" alt="Chores" />
             <p className="font-bold text-lg">Chores</p>
           </div>
-          <p className="text-neutral-black-ish font-bold text-4xl pt-3">$100</p>
+          <p className="text-neutral-black-ish font-bold text-4xl pt-3">{choresFinished(child.chores)}/{child.chores.length}</p>
           <div className="mt-7 w-full">
-            <ProgressBar progress={50} />
+            <ProgressBar progress={(choresFinished(child.chores) / child.chores.length) * 100} />
           </div>
         </div>
       </div>
