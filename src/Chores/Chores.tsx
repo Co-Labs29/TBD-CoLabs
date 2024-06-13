@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import config from "../config/config";
 import { ChildInfo, Chores as ChoresInterface, Wallet as ChoresWallet } from "types/types";
 import "./chores.css";
+import ChoreItem from "./ChoreItem";
 
 const Chores = () => {
   const navigate = useNavigate();
@@ -229,40 +230,14 @@ const Chores = () => {
           />
         </div>
         <div className="flex flex-col w-full mt-12 gap-8 px-4 md:px-0">
-        {chores &&
-  chores.map((chore) =>
-    chore.status !== "completed" ? (
-      <div
-        key={chore.id}
-        className="flex justify-between bg-lightish-purple md:w-[362px] px-10 py-4 rounded-[8px]"
-      >
-        <div className="flex flex-col gap-4 text-start">
-          <p className="text-[18px]">{chore.name}</p>
-          <p className="text-start text-[18px]">${chore.amount}</p>
-        </div>
-        <div className="flex items-center">
-          {sessionStorage.getItem("role") === "parent" && chore.status === "pending" ? (
-            <button
-              onClick={() => updateChoreStatus(chore.id, "completed", chore.child_id)}
-              className="text-purple-800 border-2 border-purple-700 rounded-xl px-4 md:px-4 font-semibold py-2 mt-4 flex items-center justify-center"
-            >
-              Approve
-            </button>
-          ) : sessionStorage.getItem("role") === "child" && chore.status !== "pending" ? (
-            // Show checkbox only if role is "child" and status is not "pending"
-            <input
-              type="checkbox"
-              onChange={() => updateChoreStatus(chore.id, "pending", 0)}
-              className="custom-checkbox"
+        {chores.map((chore) => (
+            <ChoreItem
+              key={chore.id}
+              chore={chore}
+              updateChoreStatus={updateChoreStatus}
+              handleUpdatingWalletOnApproval={handleUpdatingWalletOnApproval}
             />
-          ) : chore.status === "pending" ? (
-            // Show "Pending..." if status is "pending" and role is not "parent"
-            <p>Pending...</p>
-          ) : null /* Hide checkbox and "Pending..." if none of the conditions are met */}
-        </div>
-      </div>
-    ) : null
-  )}
+          ))}
 </div>
 
         <p>{error}</p>
