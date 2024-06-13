@@ -59,7 +59,7 @@ const NotificationsPage = () => {
   return (
     <div className="flex h-screen">
       <Sidebar />
-      <div className="w-96 p-4  rounded-lg mx-auto pt-24 ">
+      <div className=" h-[500px] rounded-[8px] border border-lightgrey overflow-y-auto scrollbar-thin mx-auto my-auto ">
         <h3 className="flex items-center justify-center">
           <span className="font-bold text-lg">Notifications</span>
         </h3>
