@@ -38,9 +38,9 @@ const ChoreItem: React.FC<ChoreItemProps> = ({ chore, updateChoreStatus, handleU
         />
       );
     } else if (chore.status === "pending") {
-      return <p>Pending...</p>;
+      return <p className="text-dark-purple font-bold">Pending...</p>;
     } else if (chore.status === "completed") {
-      return <p>Completed</p>
+      return <p className="text-dark-purple font-bold">Completed</p>
     }
     return null;
   };
