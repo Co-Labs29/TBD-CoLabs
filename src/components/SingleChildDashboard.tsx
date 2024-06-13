@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ProgressBar from "../pages/progressBar";
 import { Goal } from "types/types";
-import { ChildInfo, Chores as ChoreInterface, ChoresArray } from "types/types";
+import { ChildInfo, ChoresArray } from "types/types";
 
 interface SingleChildDashboardProps {
   child: ChildInfo;
