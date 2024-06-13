@@ -25,7 +25,7 @@ const Chores = () => {
     username: null,
     wallet: {} as ChoresWallet
   });
-  console.log("current info :>> ", currentChildInfo);
+  console.log('chores :>> ', chores);
 
   // Function to format date for database
   function formatDateForDB(dateString: Date) {
@@ -105,13 +105,32 @@ const Chores = () => {
     }
   };
 
-  const updateChoreStatus = (choreId:number, status:string) => {
+  const handleUpdatingWalletOnApproval = async (childId:number, choreId:number) => {
+    try {
+        const response = await fetch(`${url}/add_funds_to_wallet/${childId}/${choreId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        const data = await response.json()
+        console.log('data :>> ', data);
+    } catch (error) {
+        console.error(error);
+        
+    }
+  }
+
+  const updateChoreStatus = (choreId:number, status:string, childId:number) => {
+    // Update the chore status in the state immediately
     setChores((prevChores) =>
       prevChores.map((chore) =>
         chore.id === choreId ? { ...chore, status } : chore
       )
-    ); // Update the chore status in the state immediately
-    handleUpdatingStatus(choreId, status); // Call the function to update status on the server
+    ); 
+    // Call the function to update status on the server
+    handleUpdatingStatus(choreId, status); 
+    handleUpdatingWalletOnApproval(childId, choreId)
   };
 
   useEffect(() => {
@@ -210,35 +229,40 @@ const Chores = () => {
           />
         </div>
         <div className="flex flex-col w-full mt-12 gap-8 px-4 md:px-0">
-  {chores &&
-    chores.map((chore) =>
-      chore.status !== "completed" ? (
-        <div
-          key={chore.id}
-          className="flex justify-between bg-lightish-purple md:w-[362px] px-10 py-4 rounded-[8px]"
-        >
-          <div className="flex flex-col gap-4 text-start">
-            <p className="text-[18px]">{chore.name}</p>
-            <p className="text-start text-[18px]">${chore.amount}</p>
-          </div>
-          <div className="flex items-center">
-            {sessionStorage.getItem("role") === "parent" ? (
-              <button onClick={() => updateChoreStatus(chore.id, "completed")} className="text-purple-800 border-2 border-purple-700 rounded-xl px-4 md:px-4 font-semibold py-2 mt-4 flex items-center justify-center">
-                Approve
-              </button>
-            ) : chore.status === "pending" ? (
-              <p>Pending...</p>
-            ) : (
-              <input
-                type="checkbox"
-                onChange={() => updateChoreStatus(chore.id, "pending")} // Show checkbox for non-parents if the status is not "pending"
-                className="custom-checkbox"
-              />
-            )}
-          </div>
+        {chores &&
+  chores.map((chore) =>
+    chore.status !== "completed" ? (
+      <div
+        key={chore.id}
+        className="flex justify-between bg-lightish-purple md:w-[362px] px-10 py-4 rounded-[8px]"
+      >
+        <div className="flex flex-col gap-4 text-start">
+          <p className="text-[18px]">{chore.name}</p>
+          <p className="text-start text-[18px]">${chore.amount}</p>
         </div>
-      ) : null
-    )}
+        <div className="flex items-center">
+          {sessionStorage.getItem("role") === "parent" && chore.status === "pending" ? (
+            <button
+              onClick={() => updateChoreStatus(chore.id, "completed", chore.child_id)}
+              className="text-purple-800 border-2 border-purple-700 rounded-xl px-4 md:px-4 font-semibold py-2 mt-4 flex items-center justify-center"
+            >
+              Approve
+            </button>
+          ) : sessionStorage.getItem("role") === "child" && chore.status !== "pending" ? (
+            // Show checkbox only if role is "child" and status is not "pending"
+            <input
+              type="checkbox"
+              onChange={() => updateChoreStatus(chore.id, "pending", 0)}
+              className="custom-checkbox"
+            />
+          ) : chore.status === "pending" ? (
+            // Show "Pending..." if status is "pending" and role is not "parent"
+            <p>Pending...</p>
+          ) : null /* Hide checkbox and "Pending..." if none of the conditions are met */}
+        </div>
+      </div>
+    ) : null
+  )}
 </div>
 
         <p>{error}</p>
