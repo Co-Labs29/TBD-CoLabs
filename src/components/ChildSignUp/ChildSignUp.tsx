@@ -107,6 +107,7 @@ const ChildSignUp = () => {
             <input
               type="text"
               id="userName"
+              maxLength={15}
               placeholder="User Name"
               className="w-full px-3 py-2 mb-4 border rounded-lg"
               onChange={(e) =>
