@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 import { useNavigate } from 'react-router-dom';
-import config from 'config/config';
+import config from "../../config/config";
 
 function Goals() {
   const [goal, setGoal] = useState({
