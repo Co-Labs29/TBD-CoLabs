@@ -12,7 +12,8 @@ module.exports = {
         'lightish-purple': "#ECEBFA",
         'dark-purple': "#4233AB",
         'border-gray': "#CDCAC9",
-        'lightest-green': "#ECFAEB"
+        'lightest-green': "#ECFAEB",
+        'feature-background': "#EDEDED"
       },
       screens: {
         'custom-1316': '1354px',
