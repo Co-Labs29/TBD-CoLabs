@@ -112,16 +112,15 @@ const Chores = () => {
     choreId: number
   ) => {
     try {
-      const response = await fetch(
-        `${url}/add_funds_to_wallet/${childId}/${choreId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        await fetch(
+          `${url}/add_funds_to_wallet/${childId}/${choreId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
       );
-      const data = await response.json();
     
     } catch (error) {
       console.error(error);
