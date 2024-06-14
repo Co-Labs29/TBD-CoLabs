@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 import { useNavigate } from 'react-router-dom';
+import config from 'config/config';
 
 function Goals() {
   const [goal, setGoal] = useState({
@@ -16,10 +17,11 @@ function Goals() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const url = config.backendURL
     const id = sessionStorage.getItem('selectedChildId');
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/create_goal/${id}`, {
+      const response = await fetch(`${url}/create_goal/${id}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
