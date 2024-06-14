@@ -137,8 +137,7 @@ const Chores = () => {
 
   const updateChoreStatus = (
     choreId: number,
-    status: string,
-    childId: number
+    status: string
   ) => {
     // Update the chore status in the state immediately
     setChores((prevChores) =>
@@ -148,7 +147,6 @@ const Chores = () => {
     );
     // Call the function to update status on the server
     handleUpdatingStatus(choreId, status);
-    handleUpdatingWalletOnApproval(childId, choreId);
   };
 
   useEffect(() => {
