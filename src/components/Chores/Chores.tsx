@@ -30,8 +30,6 @@ const Chores = () => {
     username: null,
     wallet: {} as ChoresWallet,
   });
-  console.log("chores :>> ", chores);
-  console.log("children :>> ", children);
 
   // Function to format date for database
   function formatDateForDB(dateString: Date) {
@@ -45,14 +43,12 @@ const Chores = () => {
   const handleChildClick = (childId: number) => {
     setSelectedChildId(childId);
   };
-  console.log("object :>> ", sessionStorage.getItem("parentID"));
 
   const fetchChildren = async () => {
     const response = await fetch(
       `${url}/my_children/${sessionStorage.getItem("parentID")}`
     );
     const data = await response.json();
-    console.log("data :>> ", data);
     if (response.ok) {
       setChildren(data);
       setSelectedChildId(data[0].id);
@@ -73,7 +69,6 @@ const Chores = () => {
       }
       const response = await fetch(`${url}/get_chores/${childId}/${date}`);
       const data = await response.json();
-      // console.log('data :>> ', data);
       if (response.ok) {
         setChores(data.chores || []);
         setError(data.message || "");
@@ -100,15 +95,13 @@ const Chores = () => {
 
   const handleUpdatingStatus = async (choreId: number, status: string) => {
     try {
-      const response = await fetch(`${url}/update_chore_status/${choreId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ status }),
+        await fetch(`${url}/update_chore_status/${choreId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ status }),
       });
-      const data = await response.json();
-      console.log("data :>> ", data);
     } catch (error) {
       console.error(error);
     }
@@ -119,17 +112,16 @@ const Chores = () => {
     choreId: number
   ) => {
     try {
-      const response = await fetch(
-        `${url}/add_funds_to_wallet/${childId}/${choreId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        await fetch(
+          `${url}/add_funds_to_wallet/${childId}/${choreId}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
       );
-      const data = await response.json();
-      console.log("data :>> ", data);
+    
     } catch (error) {
       console.error(error);
     }
