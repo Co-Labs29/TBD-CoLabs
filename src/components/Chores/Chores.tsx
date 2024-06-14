@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
-import Calender from "../components/Calender/Calender";
+import Sidebar from "../Sidebar";
+import Calender from "../Calender/Calender";
 import { Link, useNavigate } from "react-router-dom";
-import config from "../config/config";
-import { ChildInfo, Chores as ChoresInterface, Wallet as ChoresWallet } from "types/types";
+import config from "../../config/config";
+import {
+  ChildInfo,
+  Chores as ChoresInterface,
+  Wallet as ChoresWallet,
+} from "types/types";
 import "./chores.css";
 import ChoreItem from "./ChoreItem";
 
@@ -24,9 +28,10 @@ const Chores = () => {
     parent_id: 0,
     role: "",
     username: null,
-    wallet: {} as ChoresWallet
+    wallet: {} as ChoresWallet,
   });
-  console.log('chores :>> ', chores);
+  console.log("chores :>> ", chores);
+  console.log("children :>> ", children);
 
   // Function to format date for database
   function formatDateForDB(dateString: Date) {
@@ -40,14 +45,17 @@ const Chores = () => {
   const handleChildClick = (childId: number) => {
     setSelectedChildId(childId);
   };
+  console.log("object :>> ", sessionStorage.getItem("parentID"));
 
   const fetchChildren = async () => {
     const response = await fetch(
       `${url}/my_children/${sessionStorage.getItem("parentID")}`
     );
     const data = await response.json();
+    console.log("data :>> ", data);
     if (response.ok) {
       setChildren(data);
+      setSelectedChildId(data[0].id);
     }
   };
 
@@ -106,32 +114,41 @@ const Chores = () => {
     }
   };
 
-  const handleUpdatingWalletOnApproval = async (childId:number, choreId:number) => {
+  const handleUpdatingWalletOnApproval = async (
+    childId: number,
+    choreId: number
+  ) => {
     try {
-        const response = await fetch(`${url}/add_funds_to_wallet/${childId}/${choreId}`, {
+      const response = await fetch(
+        `${url}/add_funds_to_wallet/${childId}/${choreId}`,
+        {
           method: "PUT",
           headers: {
-            "Content-Type": "application/json"
-          }
-        })
-        const data = await response.json()
-        console.log('data :>> ', data);
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      console.log("data :>> ", data);
     } catch (error) {
-        console.error(error);
-        
+      console.error(error);
     }
-  }
+  };
 
-  const updateChoreStatus = (choreId:number, status:string, childId:number) => {
+  const updateChoreStatus = (
+    choreId: number,
+    status: string,
+    childId: number
+  ) => {
     // Update the chore status in the state immediately
     setChores((prevChores) =>
       prevChores.map((chore) =>
         chore.id === choreId ? { ...chore, status } : chore
       )
-    ); 
+    );
     // Call the function to update status on the server
-    handleUpdatingStatus(choreId, status); 
-    handleUpdatingWalletOnApproval(childId, choreId)
+    handleUpdatingStatus(choreId, status);
+    handleUpdatingWalletOnApproval(childId, choreId);
   };
 
   useEffect(() => {
@@ -153,7 +170,7 @@ const Chores = () => {
   return (
     <div className="lg:mt-2 flex justify-center md:justify-start">
       <Sidebar />
-      <div className="md:pt-[48px] pt-[90px] text-center w-full flex flex-col items-center gap-3 md:mx-[126px]">
+      <div className="md:pt-[48px] py-[90px]  flex flex-col items-center md:items-start gap-3 md:ml-[126px]">
         <p className="font-bold">Chores</p>
         {sessionStorage.getItem("role") === "parent" ? (
           <>
@@ -187,25 +204,36 @@ const Chores = () => {
               </Link>
             </div>
 
-            <div className="flex w-full justify-center md:justify-start gap-[80px] mt-14 mb-6">
-              {children && children.map((child) => (
-                <div
-                  key={child.id}
-                  className="flex flex-col gap-4 items-center cursor-pointer"
-                  onClick={() => handleChildClick(child.id)}
-                >
-                  <img
-                    src={`/${child.img}`}
-                    alt="child_img"
-                    className={`w-16 h-16 object-cover rounded-full ${
-                      selectedChildId === child.id
-                        ? "border-[3px] border-dark-purple"
-                        : ""
-                    }`}
-                  />
-                  <p>{child.username}</p>
-                </div>
-              ))}
+            <div className="flex w-full justify-center flex-wrap flex-grow md:justify-start gap-[80px] mt-14 mb-6">
+              {children &&
+                children.map((child) => (
+                  <div
+                    key={child.id}
+                    className="flex flex-col gap-4 items-center cursor-pointer w-[75px]"
+                    onClick={() => handleChildClick(child.id)}
+                  >
+                    <img
+                      src={`/${child.img}`}
+                      alt="child_img"
+                      className={`w-16 h-16 object-cover rounded-full ${
+                        selectedChildId === child.id
+                          ? "border-[3px] border-dark-purple"
+                          : ""
+                      }`}
+                    />
+                    <p
+                      className="text-center"
+                      style={{
+                        width: "125px",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      {child.username}
+                    </p>
+                  </div>
+                ))}
             </div>
           </>
         ) : (
@@ -222,15 +250,16 @@ const Chores = () => {
             )}
           </div>
         )}
-
-        <div className="w-full px-6 md:px-0">
+        
+        <div className="w-full max-w-[928px] px-6 md:px-0">
           <Calender
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
           />
         </div>
+
         <div className="flex flex-col w-full mt-12 gap-8 px-4 md:px-0">
-        {chores.map((chore) => (
+          {chores.map((chore) => (
             <ChoreItem
               key={chore.id}
               chore={chore}
@@ -238,9 +267,9 @@ const Chores = () => {
               handleUpdatingWalletOnApproval={handleUpdatingWalletOnApproval}
             />
           ))}
-</div>
+        </div>
 
-        <p>{error}</p>
+        <p className="font-bold flex justify-center w-full max-w-[928px]">{error}</p>
       </div>
     </div>
   );
