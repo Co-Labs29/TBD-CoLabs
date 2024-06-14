@@ -31,9 +31,6 @@ const CreateChore = () => {
     amount: 0
   });
 
-
-  console.log('chore :>> ', chore);
-
   const navigate = useNavigate()
 
   const url = config.backendURL;

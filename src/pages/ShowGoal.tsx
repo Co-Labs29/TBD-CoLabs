@@ -63,9 +63,6 @@ const ShowGoals = () => {
         throw new Error("Amount is invalid");
       }
 
-      console.log("Goal ID:", parsedGoalId);
-      console.log("Amount:", amount);
-
       const response = await fetch(`${url}/transfer/${childId}`, {
         method: "POST",
         headers: {

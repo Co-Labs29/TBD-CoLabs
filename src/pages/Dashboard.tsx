@@ -12,7 +12,6 @@ const Dashboard = () => {
   const [childrenInfo, setChildrenInfo] = useState<ChildInfo[]>([])
   const navigate = useNavigate();
   const url = config.backendURL;
-  console.log('childrenInfo :>> ', childrenInfo);
 
   const fetchParentInfo = async () => {
     try {

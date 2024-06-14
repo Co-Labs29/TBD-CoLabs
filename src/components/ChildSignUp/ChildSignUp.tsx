@@ -47,7 +47,6 @@ const ChildSignUp = () => {
           body: JSON.stringify(formData),
         });
         if (!response.ok) {
-          console.log("in no ok statement")
           setError("Username already exists. Please choose a different username.");
           return;
         } else {

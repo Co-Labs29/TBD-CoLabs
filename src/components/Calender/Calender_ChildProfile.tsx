@@ -1,14 +1,12 @@
-import { useState } from 'react';
 import { format, startOfWeek, addDays, isToday } from 'date-fns';
 
 const Calendar_ChildProfile = () => {
-  const [currentWeek, setCurrentWeek] = useState(new Date());
-  console.log(setCurrentWeek)
+
+  const currentWeek = new Date()
 
   const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
   const startOfCurrentWeek = startOfWeek(currentWeek);
-
 
   const currentDate = new Date();
 

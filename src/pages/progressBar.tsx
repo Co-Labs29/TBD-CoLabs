@@ -3,7 +3,6 @@ interface ProgressBarProps {
   }
   
   const ProgressBar: React.FC<ProgressBarProps> = ({ progress }) => {
-    console.log('progress :>> ', progress);
     return (
       <div className="w-full bg-gray-200 rounded-full h-=[15px]  border border-black z-10">
         <div
@@ -11,7 +10,6 @@ interface ProgressBarProps {
           style={!progress ? {width: 0} : { width: `${Math.min(progress, 100)}%`}}
 
         >
-          {/* <span className="text-white text-center text-xs">{`${Math.min(progress, 100)}%`}</span> */}
         </div>
       </div>
     );

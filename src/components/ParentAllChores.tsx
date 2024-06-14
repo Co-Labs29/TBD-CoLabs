@@ -19,8 +19,6 @@ interface Chores {
 
 const ParentAllChores = () => {
   const [allChores, setAllChores] = useState<Chores[]>([]);
-  console.log("allChores :>> ", allChores);
-  console.log("Array.isArray(allChores) :>> ", Array.isArray(allChores));
 
   const url = config.backendURL;
   const fetchAllChores = async () => {
@@ -29,7 +27,6 @@ const ParentAllChores = () => {
         `${url}/all_chores/${sessionStorage.getItem("parentID")}`
       );
       const data = await response.json();
-      console.log("data :>> ", data);
       if (response.ok) {
         setAllChores(data.all_chores);
       }
