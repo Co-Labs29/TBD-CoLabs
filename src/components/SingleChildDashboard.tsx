@@ -46,7 +46,7 @@ const SingleChildDashboard: React.FC<SingleChildDashboardProps> = ({
   return (
     <div
       key={child.child_id}
-      className="flex flex-col xl:items-start gap-4 mt-6 border border-border-gray px-8 py-6 rounded-2xl"
+      className="flex flex-col xl:items-start gap-4 mt-6 border border-border-gray px-8 py-6 rounded-2xl md:max-w-[928px]"
     >
       <div className="flex items-center w-full xl:w-auto gap-2">
         <img src={`/${child.img}`} alt="avatar" className="w-10 h-10" />
